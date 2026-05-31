@@ -1,0 +1,1 @@
+public class UndoRedoStack{java.util.Stack<String>undo=new java.util.Stack<>(),redo=new java.util.Stack<>();public static void main(String[]a){}}

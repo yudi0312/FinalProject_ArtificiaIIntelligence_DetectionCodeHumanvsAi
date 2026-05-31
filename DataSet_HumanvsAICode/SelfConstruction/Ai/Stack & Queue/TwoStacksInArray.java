@@ -1,0 +1,1 @@
+public class TwoStacksInArray{int[]a=new int[20];int t1=-1,t2=20;void push1(int x){a[++t1]=x;}void push2(int x){a[--t2]=x;}public static void main(String[]a){}}

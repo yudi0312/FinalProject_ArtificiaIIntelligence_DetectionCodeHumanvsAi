@@ -1,0 +1,1 @@
+public class ReverseStack{public static void main(String[]a){java.util.Stack<Integer>s=new java.util.Stack<>();}}

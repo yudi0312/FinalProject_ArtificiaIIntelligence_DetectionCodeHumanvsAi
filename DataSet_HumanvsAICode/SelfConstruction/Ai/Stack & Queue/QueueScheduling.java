@@ -1,0 +1,1 @@
+public class QueueScheduling{public static void main(String[]a){System.out.println("FCFS Scheduling");}}

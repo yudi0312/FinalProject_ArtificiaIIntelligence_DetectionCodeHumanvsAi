@@ -1,0 +1,1 @@
+public class PriorityQueue{int[]a=new int[100];int size=0;void add(int x){int i=size++;while(i>0&&a[(i-1)/2]>x){a[i]=a[(i-1)/2];i=(i-1)/2;}a[i]=x;}int poll(){if(size==0)return-1;int r=a[0],x=a[--size],i=0;while(i*2+1<size){int c=i*2+1;if(c+1<size&&a[c+1]<a[c])c++;if(a[c]>=x)break;a[i]=a[c];i=c;}a[i]=x;return r;}public static void main(String[]a){}}

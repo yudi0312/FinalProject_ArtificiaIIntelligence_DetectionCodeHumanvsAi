@@ -1,0 +1,1 @@
+public class QueueUsingArray{int[]q;int f=0,r=-1,s=0;QueueUsingArray(int n){q=new int[n];}void enqueue(int x){if(s<q.length){q[++r]=x;s++;}}int dequeue(){return s==0?-1:q[f++];}public static void main(String[]a){}}

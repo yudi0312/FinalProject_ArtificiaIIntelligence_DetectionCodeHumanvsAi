@@ -1,0 +1,1 @@
+public class StackUsingLinkedList{static class Node{int d;Node n;Node(int d){this.d=d;}}Node top;void push(int x){Node t=new Node(x);t.n=top;top=t;}int pop(){if(top==null)return-1;int v=top.d;top=top.n;return v;}public static void main(String[]a){}}

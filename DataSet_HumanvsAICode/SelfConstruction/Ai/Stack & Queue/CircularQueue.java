@@ -1,0 +1,1 @@
+public class CircularQueue{int[]q;int f=0,r=-1,s=0;CircularQueue(int n){q=new int[n];}void enqueue(int x){if(s<q.length){r=(r+1)%q.length;q[r]=x;s++;}}int dequeue(){if(s==0)return-1;int v=q[f];f=(f+1)%q.length;s--;return v;}public static void main(String[]a){}}
