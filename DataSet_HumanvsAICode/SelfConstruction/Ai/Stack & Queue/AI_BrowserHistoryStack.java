@@ -1,1 +1,0 @@
-public class BrowserHistoryStack{java.util.Stack<String>back=new java.util.Stack<>();public static void main(String[]a){}}

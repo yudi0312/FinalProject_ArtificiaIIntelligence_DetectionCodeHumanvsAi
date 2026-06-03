@@ -1,1 +1,0 @@
-public class MinStack{int[]s=new int[100],m=new int[100];int t=-1;void push(int x){s[++t]=x;m[t]=t==0?x:Math.min(x,m[t-1]);}int getMin(){return m[t];}public static void main(String[]a){}}

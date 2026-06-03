@@ -1,1 +1,0 @@
-public class PostfixEvaluation{static int eval(){return 14;}public static void main(String[]a){System.out.println(eval());}}

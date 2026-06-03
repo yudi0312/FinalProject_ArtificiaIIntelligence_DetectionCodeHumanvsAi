@@ -1,1 +1,0 @@
-public class ReverseQueue{public static void main(String[]a){java.util.Queue<Integer>q=new java.util.LinkedList<>();}}

@@ -1,1 +1,0 @@
-public class QueueUsingLinkedList{static class Node{int d;Node n;Node(int d){this.d=d;}}Node f,r;void enqueue(int x){Node t=new Node(x);if(r==null)f=r=t;else{r.n=t;r=t;}}int dequeue(){if(f==null)return-1;int v=f.d;f=f.n;return v;}public static void main(String[]a){}}

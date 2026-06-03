@@ -1,1 +1,0 @@
-public class StackUsingArray{int[]a;int top=-1;StackUsingArray(int n){a=new int[n];}void push(int x){if(top<a.length-1)a[++top]=x;}int pop(){return top==-1?-1:a[top--];}public static void main(String[]args){StackUsingArray s=new StackUsingArray(5);s.push(1);System.out.println(s.pop());}}

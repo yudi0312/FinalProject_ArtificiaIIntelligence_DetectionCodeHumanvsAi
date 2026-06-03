@@ -1,1 +1,0 @@
-public class DequeImplementation{int[]a=new int[10];int f=5,r=4;void addFront(int x){a[--f]=x;}void addRear(int x){a[++r]=x;}int removeFront(){return a[f++];}int removeRear(){return a[r--];}public static void main(String[]a){}}
