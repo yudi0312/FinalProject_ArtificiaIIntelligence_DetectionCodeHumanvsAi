@@ -1,0 +1,4 @@
+Scenario,Accuracy,Precision,Recall,F1,AUC
+Original,0.92,0.92,0.92,0.92,0.9688
+Variable Renaming,0.92,0.92,0.92,0.92,0.9700000000000001
+Comment Injection,0.92,0.92,0.92,0.92,0.9692000000000001

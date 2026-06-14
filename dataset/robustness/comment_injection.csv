@@ -1,0 +1,4939 @@
+Sample_Code,Label
+"// robustness testing comment
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Graph {
+    int V;
+    vector<vector<int>> adj;
+
+    void dfs(int v, vector<bool>& visited) {
+        visited[v] = true;
+        cout << v << "" "";
+        for (int neighbor : adj[v]) {
+            if (!visited[neighbor]) {
+                dfs(neighbor, visited);
+            }
+        }
+    }
+
+public:
+    Graph(int V) : V(V), adj(V) {}
+
+    void addEdge(int u, int v) {
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+
+    void findConnectedComponents() {
+        vector<bool> visited(V, false);
+        int componentCount = 0;
+
+        cout << ""Connected Components:\n"";
+        for (int v = 0; v < V; v++) {
+            if (!visited[v]) {
+                cout << ""Component "" << ++componentCount << "": "";
+                dfs(v, visited);
+                cout << endl;
+            }
+        }
+    }
+};
+
+int main() {
+    Graph g(5);
+    g.addEdge(0, 1); // Component 1
+    g.addEdge(2, 3); // Component 2
+    g.addEdge(3, 4); 
+
+    g.findConnectedComponents();
+    return 0;
+}",1
+"import Java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int a = Integer.parseInt(scan.next());
+		int b = Integer.parseInt(scan.next());
+		scan.close();
+
+		if(a*b%2 == 1){
+			System.out.print(""Odd"");
+		}else {
+			System.out.print(""Even"");
+		}
+		return ;
+	}
+}",0
+"public class BinarySearchTree {
+
+    // Root of BST
+    BstNode root;
+
+    BinarySearchTree() {
+        root = null;
+    }
+
+    void Insert(int data) {
+        root = Insert(root, data);
+    }
+
+    BstNode Insert(BstNode root, int data) {
+
+        if (root == null) {
+            root = new BstNode(data);
+        } else if (data < root.data)
+            root.Left = Insert(root.Left, data);
+        else if (data > root.data)
+            root.Right = Insert(root.Right, data);
+
+        return root;
+    }
+
+    void InOrder() {
+        InOrder(root);
+    }
+
+    void InOrder(BstNode root) {
+        if (root != null) {
+            InOrder(root.Left);
+            System.out.print(root.data + "" "");
+            InOrder(root.Right);
+        }
+    }
+
+    void PreOrder() {
+        PreOrder(root);
+    }
+
+    void PreOrder(BstNode root) {
+        if (root == null)
+            return;
+        System.out.print(root.data + "" "");
+        PreOrder(root.Left);
+        PreOrder(root.Right);
+    }
+
+    void PostOrder() {
+        PostOrder(root);
+    }
+
+    void PostOrder(BstNode root) {
+        if (root == null)
+            return;
+        PostOrder(root.Left);
+        PostOrder(root.Right);
+        System.out.print(root.data + "" "");
+    }
+
+    int Height() {
+        return Height(root);
+    }
+
+    int Height(BstNode root) {
+        if (root == null)
+            return -1;
+        return Math.max(Height(root.Left), Height(root.Right)) + 1;
+    }
+
+    boolean Search(int data) {
+        return Search(root, data);
+    }
+
+    boolean Search(BstNode root, int data) {
+        boolean result;
+        if (root == null) {
+            result = false;
+        } else if (root.data == data) {
+            result = true;
+        } else if (data <= root.data) {
+            result = Search(root.Left, data);
+        } else {
+            result = Search(root.Right, data);
+        }
+        return result;
+    }
+
+    void Delete(int data) {
+        Delete(root, data);
+    }
+
+    BstNode Delete(BstNode root, int data) {
+        if (root == null)
+            return root;
+        else if (data < root.data)
+            root.Left = Delete(root.Left, data);
+        else if (data > root.data)
+            root.Right = Delete(root.Right, data);
+        else // found
+        {
+            // Case 1: No child
+            if (root.Left == null && root.Right == null) {
+                // delete root;
+                root = null;
+            }
+            // Case 2: One child
+            else if (root.Left == null) {
+                root = root.Right;
+            } else if (root.Right == null) {
+                root = root.Left;
+            }
+            // Case 3: 2 children
+            else {
+                BstNode temp = FindMin(root.Right);
+                root.data = temp.data;
+                root.Right = Delete(root.Right, temp.data);
+            }
+        }
+        return root;
+    }
+
+    BstNode FindMin(BstNode root) {
+        while (root.Left != null)
+            root = root.Left;
+        return root;
+    }
+}",0
+"#include <iostream>
+#include <cmath>
+
+double ln2_exp_series(int terms) {
+  double lnValue = 0.0;
+
+  for (int n = 1; n <= terms; n++) {
+    lnValue += (pow(2, n) / n); // Series expansion
+  }
+  return lnValue;
+}
+
+int main() {
+  double ln2 = ln2_exp_series(100000);
+  std::cout << ""Approximation of ln(2) using Taylor series for e^x = "" << ln2 << std::endl;
+  return 0;
+}",1
+"// robustness testing comment
+import Java.util.Scanner;
+
+public class PlusGrandDeTrois {
+  public static void main(String[] args) {
+    // Création d'un objet Scanner pour lire les entrées de l'utilisateur
+    Scanner scanner = new Scanner(System.in);
+
+    // Demande à l'utilisateur de saisir les trois entiers
+    System.out.print(""Entrez le premier entier : "");
+    int a = scanner.nextInt();
+
+    System.out.print(""Entrez le deuxième entier : "");
+    int b = scanner.nextInt();
+
+    System.out.print(""Entrez le troisième entier : "");
+    int c = scanner.nextInt();
+
+    // Détermination du plus grand nombre
+    int plusGrand;
+    
+    // Comparaison pour trouver le plus grand nombre
+    if (a >= b && a >= c) {
+      plusGrand = a;
+    } else if (b >= a && b >= c) {
+      plusGrand = b;
+    } else {
+      plusGrand = c;
+    }
+
+    // Affichage du plus grand nombre
+    System.out.println(""Le plus grand nombre parmi "" + a + "", "" + b + "" et "" + c + "" est "" + plusGrand + ""."");
+",1
+"#include <iostream>
+
+double ln2_continued_fraction(int terms) {
+  double fraction = 0.0;
+
+  for (int i = terms - 1; i > 0; i--) {
+    fraction = 1.0 / (i + fraction);
+  }
+  return 1 + fraction; // Adding the initial 1
+}
+
+int main() {
+  double ln2 = ln2_continued_fraction(100);
+  std::cout << ""Approximation of ln(2) using continued fractions = "" << ln2 << std::endl;
+  return 0;
+}",1
+"def liters_to_centiliters(liters):
+  return liters * 100
+
+def centiliters_to_liters(centiliters):
+  return centiliters / 100
+
+def main():
+  try:
+    liters = float(input(""Enter volume in liters: ""))
+    centiliters = liters_to_centiliters(liters)
+    print(f""{liters} liters is equal to {centiliters} centiliters"")
+
+    centiliters_input = float(input(""Enter volume in centiliters: ""))
+    liters_output = centiliters_to_liters(centiliters_input)
+    print(f""{centiliters_input} centiliters is equal to {liters_output} liters"")
+
+  except ValueError:
+    print(""Please enter a valid number."")
+
+if __name__ == ""__main__"":
+  main()",1
+"// ============================================================
+// 18 - Doubly Linked List Deletion
+// In a doubly linked list, deletion is more efficient because
+// each node knows its previous neighbor, so no separate
+// ""previous pointer"" traversal is needed.
+// Handles: delete head, delete tail, delete middle node.
+// Time Complexity: O(n) to find, O(1) to remove
+// ============================================================
+
+public class DoublyLinkedListDeletion {
+
+    // --- Node definition ---
+    static class Node {
+        int data;
+        Node next;
+        Node prev;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+            this.prev = null;
+        }
+    }
+
+    // --- Doubly Linked List with deletion operations ---
+    static class DLinkedList {
+        Node head;
+        Node tail;
+
+        // Insert at end for building the list
+        void insert(int data) {
+            Node newNode = new Node(data);
+
+            if (head == null) {
+                head = newNode;
+                tail = newNode;
+                return;
+            }
+
+            newNode.prev = tail;
+            tail.next = newNode;
+            tail = newNode;
+        }
+
+        // Delete the first occurrence of a node with the given value
+        // Algorithm:
+        //   1. Find the target node by traversing from head.
+        //   2. Update the previous node's next pointer.
+        //   3. Update the next node's prev pointer.
+        //   4. Handle edge cases: deleting head or tail.
+        void delete(int target) {
+            Node current = head;
+
+            // Search for the target node
+            while (current != null) {
+                if (current.data == target) {
+                    break; // Found the node to delete
+                }
+                current = current.next;
+            }
+
+            // Target not found
+            if (current == null) {
+                System.out.println(""Value "" + target + "" not found."");
+                return;
+            }
+
+            // Case 1: Node to delete is the head
+            if (current == head) {
+                head = head.next;
+                if (head != null) {
+                    head.prev = null; // New head has no predecessor
+                } else {
+                    tail = null; // List is now empty
+                }
+            }
+            // Case 2: Node to delete is the tail
+            else if (current == tail) {
+                tail = tail.prev;
+                if (tail != null) {
+                    tail.next = null; // New tail has no successor
+                } else {
+                    head = null; // List is now empty
+                }
+            }
+            // Case 3: Node to delete is in the middle
+            else {
+                // Link previous node directly to the node after current
+                current.prev.next = current.next;
+                // Link next node back to the node before current
+                current.next.prev = current.prev;
+            }
+
+            System.out.println(""Deleted: "" + target);
+        }
+
+        // Print forward
+        void displayForward() {
+            Node current = head;
+            System.out.print(""Forward: "");
+            while (current != null) {
+                System.out.print(current.data + "" <-> "");
+                current = current.next;
+            }
+            System.out.println(""null"");
+        }
+    }
+
+    // --- Example Usage ---
+    public static void main(String[] args) {
+        DLinkedList list = new DLinkedList();
+
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+        list.insert(40);
+        list.insert(50);
+
+        list.displayForward();
+        // Output: Forward: 10 <-> 20 <-> 30 <-> 40 <-> 50 <-> null
+
+        list.delete(30); // Delete middle
+        list.displayForward();
+        // Output: Forward: 10 <-> 20 <-> 40 <-> 50 <-> null
+
+        list.delete(10); // Delete head
+        list.displayForward();
+        // Output: Forward: 20 <-> 40 <-> 50 <-> null
+
+        list.delete(50); // Delete tail
+        list.displayForward();
+        // Output: Forward: 20 <-> 40 <-> null
+
+        list.delete(99); // Value not present
+        // Output: Value 99 not found.
+    }
+}
+",1
+"import Java.io.*;
+import Java.util.*;
+
+public class Main {
+
+	final static long MOD = 1000000007;
+	public static String[] Ws = null;
+	public static int wsIndx = 0;
+	public static BufferedReader in = null;
+	public static void main(String[] args) throws Exception {
+
+
+		String ans =""Yes"";
+		String w = nextString();
+
+		int[] alp = new int['z'-'a'+1];
+		Arrays.fill(alp,0);
+		for(int i=0;i<w.length();i++){
+			alp['z'-w.charAt(i)]++;
+		}
+		for(int i=0;i<alp.length;i++){
+			if(alp[i]%2==1){
+				ans=""No"";
+				break;
+			}
+		}
+		System.out.println(ans);
+
+	}
+
+
+	public static void check() throws Exception{
+		if(in == null){
+			in = new BufferedReader(new InputStreamReader(System.in));
+		}
+		if(Ws==null || Ws.length<=wsIndx){
+			Ws = in.readLine().split("" "");
+			wsIndx=0;
+		}
+	}
+	public static int nextInt()throws Exception{
+		check();
+		return Integer.parseInt(Ws[wsIndx++]);
+	}
+
+	public static long nextLong()throws Exception{
+		check();
+		return Long.parseLong(Ws[wsIndx++]);
+	}
+
+	public static String nextString()throws Exception{
+		check();
+		return Ws[wsIndx++];
+	}
+
+	public static int[] nextInts()throws Exception{
+		check();
+		int[] tmp = new int[Ws.length];
+		for(int i=0;i<tmp.length;i++){
+			tmp[i]=Integer.parseInt(Ws[i]);
+		}
+		wsIndx=Ws.length;
+		return tmp;
+	}
+
+	public static long[] nextLongs()throws Exception{
+		check();
+		long[] tmp = new long[Ws.length];
+		for(int i=0;i<tmp.length;i++){
+			tmp[i]=Long.parseLong(Ws[i]);
+		}
+		wsIndx=Ws.length;
+		return tmp;
+	}
+
+	public static String[] nextStrings()throws Exception{
+		check();
+		wsIndx=Ws.length;
+		return Ws;
+	}
+
+
+}",0
+"// robustness testing comment
+#include <stdio.h>
+
+void mix_volumes(double liters1, double dl1, double liters2, double dl2, double* total_liters, double* total_dl) {
+  double total_dl_temp = (liters1 * 10 + dl1) + (liters2 * 10 + dl2);
+  *total_liters = total_dl_temp / 10;
+  *total_dl = (int)total_dl_temp % 10;
+}
+
+int main() {
+  double liters1 = 2, dl1 = 5;
+  double liters2 = 1, dl2 = 7;
+
+  double total_liters, total_dl;
+  mix_volumes(liters1, dl1, liters2, dl2, &total_liters, &total_dl);
+
+  printf(""Total volume: %.2f liters and %.2f deciliters.\n"", total_liters, total_dl);
+
+  return 0;
+}",1
+"// robustness testing comment
+/*
+124. Binary Tree Maximum Path Sum
+https://leetcode.com/problems/binary-tree-maximum-path-sum/
+
+Given a non-empty binary tree, find the maximum path sum.
+
+For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path must contain at least one node and does not need to go through the root.
+
+Example 1:
+
+Input: [1,2,3]
+
+       1
+      / \
+     2   3
+
+Output: 6
+Example 2:
+
+Input: [-10,9,20,null,null,15,7]
+
+   -10
+   / \
+  9  20
+    /  \
+   15   7
+
+Output: 42
+*/
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+#include <algorithm> 
+
+class Solution {
+public:
+    // The method returns the maximum sum from this root to down to ONE OF its leaves
+    int getBranchSumRecursively(TreeNode* node, int* totalSum)
+    {
+        if (!node)
+        {
+            return 0;
+        }
+
+        auto leftBranchSum = getBranchSumRecursively(node->left, totalSum);
+        auto rightBranchSum = getBranchSumRecursively(node->right, totalSum);
+        
+        // The maximum sum is either:
+        // 1. Value of current node
+        // 2. Current node value + left branch sum
+        // 3. Current node value + right branch sum
+        // 4. Current node value + left branch sum + right branch sum
+        // The maximum of top 3 is the return value (called singleChoice)
+        
+        int singleChoiceArray[] = {node->val, node->val + leftBranchSum, node->val + rightBranchSum};
+        int singleChoice = *std::max_element(singleChoiceArray, singleChoiceArray + 3);
+        
+        int totalSumArray[] = {*totalSum, singleChoice, node->val + leftBranchSum + rightBranchSum};
+        *totalSum = *std::max_element(totalSumArray, totalSumArray + 3);
+        
+        return singleChoice;
+    }
+     
+    int maxPathSum(TreeNode* root)
+    {
+        int totalSum = root->val;   
+        getBranchSumRecursively(root, &totalSum);
+        return totalSum;
+    }
+};
+",0
+"def distance(point1, point2):
+  return abs(point1 - point2)
+
+print(""Distance between 5 and 3:"", distance(5, 3)) # Outputs 2
+print(""Distance between -5 and -3:"", distance(-5, -3)) # Outputs 2",1
+"// robustness testing comment
+// ============================================================
+// 06 - Delete Node
+// Removes a node with a given value from the linked list.
+// Handles: deleting the head, a middle node, or the last node.
+// Time Complexity: O(n)
+// ============================================================
+
+public class DeleteNode {
+
+    // --- Node definition ---
+    static class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    // --- Linked List with delete operation ---
+    static class LinkedList {
+        Node head;
+
+        // Insert at end for building the list
+        void insert(int data) {
+            Node newNode = new Node(data);
+            if (head == null) {
+                head = newNode;
+                return;
+            }
+            Node current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+
+        // Delete the first occurrence of a node with the given value
+        // Algorithm:
+        //   1. If head holds the target value, move head forward.
+        //   2. Otherwise, traverse the list keeping track of the
+        //      previous node.
+        //   3. When found, skip over the target node by linking
+        //      previous.next to target.next.
+        void delete(int target) {
+            // Case 1: List is empty
+            if (head == null) {
+                System.out.println(""List is empty. Cannot delete "" + target);
+                return;
+            }
+
+            // Case 2: Head node holds the target value
+            if (head.data == target) {
+                head = head.next; // Move head to the next node
+                System.out.println(""Deleted: "" + target);
+                return;
+            }
+
+            // Case 3: Search through the rest of the list
+            Node previous = head;
+            Node current = head.next;
+
+            while (current != null) {
+                if (current.data == target) {
+                    // Bypass the current node
+                    previous.next = current.next;
+                    System.out.println(""Deleted: "" + target);
+                    return;
+                }
+                previous = current;
+                current = current.next;
+            }
+
+            // Node not found
+            System.out.println(""Value "" + target + "" not found in the list."");
+        }
+
+        // Print all elements
+        void display() {
+            Node current = head;
+            System.out.print(""List: "");
+            while (current != null) {
+                System.out.print(current.data + "" -> "");
+                current = current.next;
+            }
+            System.out.println(""null"");
+        }
+    }
+
+    // --- Example Usage ---
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+        list.insert(40);
+        list.insert(50);
+        list.display();
+        // Output: List: 10 -> 20 -> 30 -> 40 -> 50 -> null
+
+        list.delete(30); // Delete middle node
+        list.display();
+        // Output: List: 10 -> 20 -> 40 -> 50 -> null
+
+        list.delete(10); // Delete head
+        list.display();
+        // Output: List: 20 -> 40 -> 50 -> null
+
+        list.delete(50); // Delete tail
+        list.display();
+        // Output: List: 20 -> 40 -> null
+
+        list.delete(99); // Delete non-existent value
+        // Output: Value 99 not found in the list.
+    }
+}
+",1
+"public static void mettreAJourBien(String id) {
+  if (!biensImmobiliers.containsKey(id)) {
+    System.out.println(""Erreur: Bien non trouvé."");
+    return;
+  }
+
+  System.out.println(""Informations actuelles pour "" + id + "": "" + biensImmobiliers.get(id));
+  Scanner scanner = new Scanner(System.in);
+  
+  System.out.print(""Nouvelle prix (laisser vide pour ne pas changer): "");
+  String prixInput = scanner.nextLine();
+  
+  System.out.print(""Nouvelle disponibilité (1 pour oui, 0 pour non, laisser vide pour ne pas changer): "");
+  String dispoInput = scanner.nextLine();
+
+  boolean updated = false;
+  HashMap<String, Object> bien = biensImmobiliers.get(id);
+
+  if (!prixInput.isEmpty()) {
+    try {
+      bien.put(""prix"", Integer.parseInt(prixInput));
+      updated = true;
+      System.out.println(""Prix mis à jour."");
+    } catch (NumberFormatException e) {
+      System.out.println(""Erreur: Prix doit être un nombre."");
+    }
+  }
+  
+  if (!dispoInput.isEmpty()) {
+    if (dispoInput.equals(""1"") || dispoInput.equals(""0"")) {
+      bien.put(""disponibilite"", dispoInput.equals(""1""));
+      updated = true;
+      System.out.println(""Disponibilité mise à jour."");
+    } else {
+      System.out.println(""Erreur: Disponibilité doit être 0 ou 1."");
+    }
+  }
+
+  if (!updated) {
+    System.out.println(""Aucune mise à jour effectuée."");
+  } else {
+    System.out.println(""Bien mis à jour: "" + id + "" - "" + bien);
+  }
+}
+
+// Exemple d'utilisation
+String idBien = scanner.nextLine();
+mettreAJourBien(idBien);",1
+"public class ReverseStack {
+    public static void main(String[] args){
+        int[] stack={1,2,3};
+        for(int i=0;i<stack.length/2;i++){
+            int t=stack[i];
+            stack[i]=stack[stack.length-1-i];
+            stack[stack.length-1-i]=t;
+        }
+    }
+}",1
+"// robustness testing comment
+#include <stdio.h>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef double db;
+typedef long long ll;
+typedef long double ld;
+typedef unsigned int ui;
+typedef unsigned long long ull;
+
+typedef pair < db, db > pdd;
+typedef pair < db, ld > pdl;
+typedef pair < ld, db > pld;
+typedef pair < ld, ld > ldp;
+
+typedef pair < ll, ll > pll;
+typedef pair < int, ll > pil;
+typedef pair < ll, int > pli;
+typedef pair < int, int > pii;
+
+#define F first
+#define S second
+
+#define en end()
+#define bg begin()
+
+#define rev reverse
+#define mp make_pair
+#define pb push_back
+
+#define y1 y1234567890
+#define um unordered_map
+
+#define all(x) x.bg, x.en
+#define sz(x) (int)x.size()
+#define len(x) (int)strlen(x)
+
+#define sqr(x) ((x + 0ll) * (x))
+#define sqrd(x) ((x + 0.0) * (x))
+
+#define forn(i, n) for (int i = 1; i <= n; i++)
+
+const ll inf = (ll)1e18;
+const ll mod = (ll)1e9 + 7;
+
+const db eps = (db)1e-9;
+const db pi = acos(-1.0);
+
+const int dx[] = {0, 0, 1, 0, -1};
+const int dy[] = {0, 1, 0, -1, 0};
+
+const int N = 2005;
+
+int n, k, q, a[N], ar[N], arr[N];
+
+int main() {
+	//freopen("".in"", ""r"", stdin);
+	//freopen("".out"", ""w"", stdout);
+	//freopen("".err"", ""w"", stderr);
+
+	//srand(time(NULL));
+
+	//cin.tie(NULL);
+	//cout.tie(NULL);
+	//ios_base::sync_with_stdio(false);
+
+	//cout << setprecision(10) << fixed;
+	
+	cin >> n >> k >> q;
+
+	for (int i = 1; i <= n; i++)
+		cin >> a[i];
+
+	int ans = (int)2e9;
+
+	for (int i = 1; i <= n; i++) {
+		int m = 0;
+		for (int j = 1; j <= n; j++) {
+			if (a[j] < a[i])
+				continue;
+			int ptr = j - 1, sz = 0;
+			while (ptr < n && a[ptr + 1] >= a[i])
+				ar[++sz] = a[++ptr];
+			sort(ar + 1, ar + 1 + sz);
+			for (int it = 1; it <= sz - k + 1; it++)
+				arr[++m] = ar[it];
+			j = ptr;
+		}
+		sort(arr + 1, arr + 1 + m);
+		if (m >= q)
+			ans = min(ans, arr[q] - a[i]);
+	}
+
+	cout << ans;
+	
+	//cerr << (clock() + 0.0) / CLOCKS_PER_SEC;
+
+	return 0;
+}",0
+"import Java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next();
+		String sample = ""abcdefghijklmnopqrstuvwxyz"";
+		int[] sum = new int[26];
+		for(int i=0;i<s.length();i++) {
+			for(int j=0;j<26;j++) {
+				if(sample.charAt(j)==s.charAt(i)) {
+					sum[j]++;
+					break;
+				}
+			}
+		}
+		int flg=0;
+
+		for(int i:sum) {
+			if(i%2!=0) {
+				flg=1;
+				break;
+			}
+		}
+
+		if(flg!=1) {
+			System.out.println(""Yes"");
+		}else {
+			System.out.println(""No"");//No or NO注意！！
+		}
+
+	}
+	public static int sample(int n) {
+		return n;
+	}
+
+}",0
+"#include <stdio.h> 
+
+int main(){
+	int x,y;
+	double w,h;
+	scanf(""%lf %lf %d %d"",&w,&h,&x,&y);
+	if(w==h){
+		if(x==w/2.0 && y == h/2.0){
+			printf(""%lf 1"",0.5*w*h);
+		}
+		else{
+			printf(""%lf 0"",0.5*w*h);
+		}
+	}
+	else{
+		printf(""%lf 0"",0.5*w*h);
+	}
+	return 0; 
+}",0
+"// robustness testing comment
+""""""
+Frequency Finder
+
+Finds the frequency of each character in a string.
+""""""
+
+def character_frequency(text):
+    """"""
+    Return a dictionary containing character frequencies.
+    """"""
+    frequencies = {}
+
+    for character in text:
+        frequencies[character] = (
+            frequencies.get(character, 0) + 1
+        )
+
+    return frequencies
+
+
+# Example usage
+if __name__ == ""__main__"":
+    print(character_frequency(""banana""))",1
+"A,B,K=map(int,input().split())
+count=0
+i=min(A,B)+1
+while count<K:
+  i-=1
+  if A%i==0 and B%i==0:
+    count+=1
+print(i)",0
+"import Java.util.Scanner;
+
+public class PyramideReguliere {
+  public static double aireBasePolygonale(int n, double longueur) {
+    return (n * Math.pow(longueur, 2)) / (4 * Math.tan(Math.PI / n));
+  }
+
+  public static double[] calculerPyramideReguliere(int n, double longueurBase, double hauteur) {
+    // Calcul du volume
+    double aireBase = aireBasePolygonale(n, longueurBase);
+    double volume = (1.0 / 3) * aireBase * hauteur;
+
+    // Calcul de l'aire de la surface
+    double apotheme = Math.sqrt(Math.pow(hauteur, 2) + Math.pow(longueurBase / 2, 2));
+    double aireSurfaceLat = n * longueurBase * apotheme / 2;
+    double aireSurface = aireSurfaceLat + aireBase;
+
+    return new double[] { volume, aireSurface };
+  }
+
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+
+    // Saisie des dimensions
+    System.out.print(""Entrez le nombre de côtés de la base polygonale : "");
+    int n = scanner.nextInt();
+    System.out.print(""Entrez la longueur de chaque côté de la base polygonale : "");
+    double longueurBase = scanner.nextDouble();
+    System.out.print(""Entrez la hauteur de la pyramide : "");
+    double hauteur = scanner.nextDouble();
+
+    double[] resultats = calculerPyramideReguliere(n, longueurBase, hauteur);
+    double volume = resultats[0];
+    double aireSurface = resultats[1];
+
+    System.out.printf(""Volume de la pyramide régulière : %.2f\n"", volume);
+    System.out.printf(""Aire de la surface de la pyramide régulière : %.2f\n"", aireSurface);
+
+    scanner.close();
+  }
+}",1
+"class Solution
+{
+    public:
+    
+    //Function to store the nodes of tree in the list.
+    void serializeUtil(Node*root,vector<int>&a)
+    {
+        //base case if node is null.
+        if (root == NULL) {
+            a.push_back(-1);
+            return;
+        }
+        //storing the data at node in list.
+        a.push_back(root->data);
+        
+        //calling function recursively for left and right subtrees.
+        serializeUtil(root->left, a);
+        serializeUtil(root->right, a);
+    }
+    
+    //Function to serialize a tree and return a list containing nodes of tree.
+    vector<int> serialize(Node *root)
+    {
+        vector<int> serialized;
+        serializeUtil(root,serialized);
+        
+        //returning the list.
+        return serialized;
+    }
+    
+    
+    //Function to construct the tree.
+    Node *kewl(vector<int> &a, int *index) 
+    {
+        //base case if there are no more elements in list.
+        if (*index == a.size() or a[*index] == -1) {
+            *index += 1;
+            return NULL;
+        }
+        
+        //creating new node for storing current element.
+        Node *root = new Node(a[*index]);
+        *index += 1;
+        
+        //calling function recursively for left and right subtrees. 
+        root->left = kewl(a, index);
+        root->right = kewl(a, index);
+        return root;
+    }
+    
+    //Function to deserialize a list and construct the tree.
+    Node *deSerialize(vector<int> &a) 
+    {
+        int index = 0;
+        //returning the tree.
+        return kewl(a, &index);
+    }
+};
+",0
+"// robustness testing comment
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+  int n;
+  cin >> n;
+  cout << n%10 + n/10%10 + n/100 << endl;
+}",0
+"#include <stdio.h>
+
+int main() {
+  int age;
+  printf(""Enter your age: "");
+  scanf(""%d"", &age);
+
+  if (age > 40) {
+    printf(""Consider regular health screenings.\n"");
+  } else {
+    printf(""Maintain a healthy lifestyle.\n"");
+  }
+  return 0;
+}",1
+"#include<math.h>
+#include<time.h>
+#include<string.h>
+#include<stdlib.h>
+#include<stdio.h>
+int main()
+{
+	double r,pie=3.14159265358979323;
+	scanf(""%lf"",&r);
+	printf(""%.6f %.6f\n"",r*r*pie,2*r*pie);
+	return 0;
+}",0
+"#include<iostream>
+using namespace std;
+
+template <typename T>
+class AVL{
+    public:
+        class node{
+            public:
+                T key;
+                int height;
+                node * left;
+                node * right;
+                node(T k){
+                    height = 1;
+                    key = k;
+                    left = NULL;
+                    right = NULL;
+                }
+        };
+        node * root = NULL;
+        int n;
+        void insert(T x){
+            root=insertUtil(root, x);
+        }
+        void remove(T x){
+            root=removeUtil(root, x);
+        }
+        node * search(T x){
+            return searchUtil(root,x);
+        }
+        void inorder(){
+            inorderUtil(root);
+            cout<<endl;
+        }
+    private:
+        int height(node * head){
+            if(head==NULL) return 0;
+            return head->height;
+        }
+        node * rightRotation(node * head){
+            node * newhead = head->left;
+            head->left = newhead->right;
+            newhead->right = head;
+            head->height = 1+max(height(head->left), height(head->right));
+            newhead->height = 1+max(height(newhead->left), height(newhead->right));
+            return newhead;
+        }
+
+        node * leftRotation(node * head){
+            node * newhead = head->right;
+            head->right = newhead->left;
+            newhead->left = head;
+            head->height = 1+max(height(head->left), height(head->right));
+            newhead->height = 1+max(height(newhead->left), height(newhead->right));
+            return newhead;
+        }
+
+        void inorderUtil(node * head){
+            if(head==NULL) return ;
+            inorderUtil(head->left);
+            cout<<head->key<<"" "";
+            inorderUtil(head->right);
+        }
+
+        node * insertUtil(node * head, T x){
+            if(head==NULL){
+                n+=1;
+                node * temp = new node(x);
+                return temp;
+            }
+            if(x < head->key) head->left = insertUtil(head->left, x);
+            else if(x > head->key) head->right = insertUtil(head->right, x);
+            head->height = 1 + max(height(head->left), height(head->right));
+            int bal = height(head->left) - height(head->right);
+            if(bal>1){
+                if(x < head->left->key){
+                    return rightRotation(head);
+                }else{
+                    head->left = leftRotation(head->left);
+                    return rightRotation(head);
+                }
+            }else if(bal<-1){
+                if(x > head->right->key){
+                    return leftRotation(head);
+                }else{
+                    head->right = rightRotation(head->right);
+                    return leftRotation(head);
+                }
+            }
+            return head;
+        }
+        node * removeUtil(node * head, T x){
+            if(head==NULL) return NULL;
+            if(x < head->key){
+                head->left = removeUtil(head->left, x);
+            }else if(x > head->key){
+                head->right = removeUtil(head->right, x);
+            }else{
+                node * r = head->right;
+                if(head->right==NULL){
+                    node * l = head->left;
+                    delete(head);
+                    head = l;
+                }else if(head->left==NULL){
+                    delete(head);
+                    head = r;
+                }else{
+                    while(r->left!=NULL) r = r->left;
+                    head->key = r->key;
+                    head->right = removeUtil(head->right, r->key);
+                }
+            }
+            if(head==NULL) return head;
+            head->height = 1 + max(height(head->left), height(head->right));
+            int bal = height(head->left) - height(head->right);
+            if(bal>1){
+                if(height(head->left) >= height(head->right)){
+                    return rightRotation(head);
+                }else{
+                    head->left = leftRotation(head->left);
+                    return rightRotation(head);
+                }
+            }else if(bal < -1){
+                if(height(head->right) >= height(head->left)){
+                    return leftRotation(head);
+                }else{
+                    head->right = rightRotation(head->right);
+                    return leftRotation(head);
+                }
+            }
+            return head;
+        }
+        node * searchUtil(node * head, T x){
+            if(head == NULL) return NULL;
+            T k = head->key;
+            if(k == x) return head;
+            if(k > x) return searchUtil(head->left, x);
+            if(k < x) return searchUtil(head->right, x);
+        }
+};
+/*
+int main(){
+    AVL<float> t;
+    t.insert(1.3);
+    t.insert(2.4);
+    t.insert(3.5);
+    t.insert(4.6);
+    t.insert(5.7);
+    t.insert(6.8);
+    t.insert(7.9);
+    t.inorder();
+    t.remove(5.7);
+    t.remove(6.8);
+    t.remove(7.9);
+    t.inorder();
+}
+*/
+",0
+"// robustness testing comment
+/**
+ * @file
+ * @brief Implementation of [0-1 Knapsack Problem]
+ * (https://en.wikipedia.org/wiki/Knapsack_problem)
+ *
+ * @details
+ * Given weights and values of n items, put these items in a knapsack of
+ * capacity `W` to get the maximum total value in the knapsack. In other words,
+ * given two integer arrays `val[0..n-1]` and `wt[0..n-1]` which represent
+ * values and weights associated with n items respectively. Also given an
+ * integer W which represents knapsack capacity, find out the maximum value
+ * subset of `val[]` such that sum of the weights of this subset is smaller than
+ * or equal to W. You cannot break an item, either pick the complete item or
+ * don’t pick it (0-1 property)
+ *
+ * ### Algorithm
+ * The idea is to consider all subsets of items and calculate the total weight
+ * and value of all subsets. Consider the only subsets whose total weight is
+ * smaller than `W`. From all such subsets, pick the maximum value subset.
+ *
+ * @author [Anmol](https://github.com/Anmol3299)
+ * @author [Pardeep](https://github.com/Pardeep009)
+ */
+
+#include <array>
+#include <cassert>
+#include <iostream>
+#include <vector>
+
+/**
+ * @namespace dynamic_programming
+ * @brief Dynamic Programming algorithms
+ */
+namespace dynamic_programming {
+/**
+ * @namespace Knapsack
+ * @brief Implementation of 0-1 Knapsack problem
+ */
+namespace knapsack {
+/**
+ * @brief Picking up all those items whose combined weight is below
+ * the given capacity and calculating the value of those picked items. Trying all
+ * possible combinations will yield the maximum knapsack value.
+ * @tparam n size of the weight and value array
+ * @param capacity capacity of the carrying bag
+ * @param weight array representing the weight of items
+ * @param value array representing the value of items
+ * @return maximum value obtainable with a given capacity.
+ */
+template <size_t n>
+int maxKnapsackValue(const int capacity, const std::array<int, n> &weight,
+                     const std::array<int, n> &value) {
+    std::vector<std::vector<int> > maxValue(n + 1,
+                                            std::vector<int>(capacity + 1, 0));
+    // outer loop will select no of items allowed
+    // inner loop will select the capacity of the knapsack bag
+    int items = sizeof(weight) / sizeof(weight[0]);
+    for (size_t i = 0; i < items + 1; ++i) {
+        for (size_t j = 0; j < capacity + 1; ++j) {
+            if (i == 0 || j == 0) {
+                // if no of items is zero or capacity is zero, then maxValue
+                // will be zero
+                maxValue[i][j] = 0;
+            } else if (weight[i - 1] <= j) {
+                // if the ith item's weight(in the actual array it will be at i-1)
+                // is less than or equal to the allowed weight i.e. j then we
+                // can pick that item for our knapsack. maxValue will be the
+                // obtained either by picking the current item or by not picking
+                // current item
+
+                // picking the current item
+                int profit1 = value[i - 1] + maxValue[i - 1][j - weight[i - 1]];
+
+                // not picking the current item
+                int profit2 = maxValue[i - 1][j];
+
+                maxValue[i][j] = std::max(profit1, profit2);
+            } else {
+                // as the weight of the current item is greater than the allowed weight, so
+                // maxProfit will be profit obtained by excluding the current item.
+                maxValue[i][j] = maxValue[i - 1][j];
+            }
+        }
+    }
+
+    // returning maximum value
+    return maxValue[items][capacity];
+}
+}  // namespace knapsack
+}  // namespace dynamic_programming
+
+/**
+ * @brief Function to test the above algorithm
+ * @returns void
+ */
+static void test() {
+    // Test 1
+    const int n1 = 3;                             // number of items
+    std::array<int, n1> weight1 = {10, 20, 30};   // weight of each item
+    std::array<int, n1> value1 = {60, 100, 120};  // value of each item
+    const int capacity1 = 50;                     // capacity of carrying bag
+    const int max_value1 = dynamic_programming::knapsack::maxKnapsackValue(
+        capacity1, weight1, value1);
+    const int expected_max_value1 = 220;
+    assert(max_value1 == expected_max_value1);
+    std::cout << ""Maximum Knapsack value with "" << n1 << "" items is ""
+              << max_value1 << std::endl;
+
+    // Test 2
+    const int n2 = 4;                               // number of items
+    std::array<int, n2> weight2 = {24, 10, 10, 7};  // weight of each item
+    std::array<int, n2> value2 = {24, 18, 18, 10};  // value of each item
+    const int capacity2 = 25;                       // capacity of carrying bag
+    const int max_value2 = dynamic_programming::knapsack::maxKnapsackValue(
+        capacity2, weight2, value2);
+    const int expected_max_value2 = 36;
+    assert(max_value2 == expected_max_value2);
+    std::cout << ""Maximum Knapsack value with "" << n2 << "" items is ""
+              << max_value2 << std::endl;
+}
+
+/**
+ * @brief Main function
+ * @returns 0 on exit
+ */
+int main() {
+    // Testing
+    test();
+    return 0;
+}
+",0
+"class Robot:
+  def __init__(self):
+    self.x = 0
+    self.y = 0
+    self.speed = 1
+    self.history = []
+
+  def move(self, direction):
+    if direction == ""up"":
+      self.y += self.speed
+    elif direction == ""down"":
+      self.y -= self.speed
+    elif direction == ""left"":
+      self.x -= self.speed
+    elif direction == ""right"":
+      self.x += self.speed
+    else:
+      print(""Invalid direction"")
+      return
+    
+    self.history.append(direction)
+
+  def set_speed(self, speed):
+    if 1 <= speed <= 3:
+      self.speed = speed
+      print(f""Speed set to {self.speed}"")
+    else:
+      print(""Invalid speed. Please set between 1 and 3."")
+
+  def get_position(self):
+    return self.x, self.y
+
+robot = Robot()
+
+while True:
+  command = input(""Enter command (up, down, left, right, set speed) or 'exit': "")
+  if command == 'exit':
+    break
+  elif command.startswith(""set speed""):
+    _, speed = command.split()
+    robot.set_speed(int(speed))
+  else:
+    robot.move(command)
+    print(f""Current position: {robot.get_position()}"")",1
+"#include<stdio.h>
+int main(){
+int w, h, x, y;
+scanf(""%d"",&w); 
+scanf(""%d"",&h); 
+scanf(""%d"",&x); 
+scanf(""%d"",&y); 
+double s=w*h/2;
+if(w==x*2&&h=y*2)
+printf(""%lf 1"",s);
+else
+printf(""%lf 0"",s);
+return 0;
+}",0
+"#include<stdio.h>
+
+int main(){
+
+  int i, n;
+  scanf(""%d\n"", &n);
+  int a[n];
+
+  for ( i = 0 ; i < n ; i++ ){
+  	scanf(""%d"", &a[i]);
+  }
+
+  for ( i = n - 1 ; i >= 0 ; i-- ){
+  	printf(""%d"", a[i]);
+  	if (i) printf("" "") ;
+  }
+
+  printf(""\n"");
+
+  return 0;
+}",0
+"// robustness testing comment
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// Structure to represent an edge
+struct Edge {
+    int src, dest, weight;
+};
+
+// Disjoint Set Union (Union-Find) class
+class DSU {
+    vector<int> parent, rank;
+public:
+    DSU(int n) : parent(n), rank(n, 0) {
+        for (int i = 0; i < n; i++) parent[i] = i;
+    }
+
+    int find(int i) {
+        if (parent[i] == i) return i;
+        return parent[i] = find(parent[i]); // Path compression
+    }
+
+    void unite(int i, int j) {
+        int rootI = find(i);
+        int rootJ = find(j);
+        if (rootI != rootJ) {
+            if (rank[rootI] < rank[rootJ]) parent[rootI] = rootJ;
+            else if (rank[rootI] > rank[rootJ]) parent[rootJ] = rootI;
+            else {
+                parent[rootJ] = rootI;
+                rank[rootI]++;
+            }
+        }
+    }
+};
+
+// Custom comparator to sort edges by weight
+bool compareEdges(Edge e1, Edge e2) {
+    return e1.weight < e2.weight;
+}
+
+void kruskalMST(vector<Edge>& edges, int V) {
+    sort(edges.begin(), edges.end(), compareEdges);
+    DSU dsu(V);
+    int totalCost = 0;
+
+    cout << ""Kruskal's Minimum Spanning Tree Edges:\n"";
+    for (auto& edge : edges) {
+        // If including this edge doesn't cause a cycle
+        if (dsu.find(edge.src) != dsu.find(edge.dest)) {
+            dsu.unite(edge.src, edge.dest);
+            totalCost += edge.weight;
+            cout << edge.src << "" - "" << edge.dest << "" (Weight: "" << edge.weight << "")\n"";
+        }
+    }
+    cout << ""Total Cost: "" << totalCost << endl;
+}
+
+int main() {
+    int V = 4;
+    vector<Edge> edges = {
+        {0, 1, 10}, {0, 2, 6}, {0, 3, 5},
+        {1, 3, 15}, {2, 3, 4}
+    };
+
+    kruskalMST(edges, V);
+    return 0;
+}",1
+"// robustness testing comment
+// ============================================================
+// 16 - Split Linked List
+// Divides a linked list into two halves at the middle node.
+// Uses the slow/fast pointer technique to find the midpoint.
+// If the list has an odd number of nodes, the first half
+// gets the extra node.
+// Time Complexity: O(n) | Space Complexity: O(1)
+// ============================================================
+
+public class SplitLinkedList {
+
+    // --- Node definition ---
+    static class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    // --- Linked List with split operation ---
+    static class LinkedList {
+        Node head;
+
+        // Insert at end for building the list
+        void insert(int data) {
+            Node newNode = new Node(data);
+            if (head == null) {
+                head = newNode;
+                return;
+            }
+            Node current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+
+        // Split the list into two halves and store them in firstHalf/secondHalf
+        // Algorithm:
+        //   1. Use slow/fast pointers to locate the end of the first half.
+        //   2. The node AFTER slow becomes the head of the second half.
+        //   3. Break the link between slow and the second half.
+        void split(LinkedList firstHalf, LinkedList secondHalf) {
+            if (head == null) {
+                firstHalf.head = null;
+                secondHalf.head = null;
+                return;
+            }
+
+            Node slowPointer = head;
+            Node fastPointer = head.next; // Start fast one step ahead
+
+            // Move until fast reaches the end of the list
+            while (fastPointer != null && fastPointer.next != null) {
+                slowPointer = slowPointer.next;
+                fastPointer = fastPointer.next.next;
+            }
+
+            // slowPointer is at the last node of the first half
+            firstHalf.head = head;              // First half starts at head
+            secondHalf.head = slowPointer.next; // Second half starts after slow
+            slowPointer.next = null;            // Disconnect the two halves
+        }
+
+        // Print all elements
+        void display(String label) {
+            Node current = head;
+            System.out.print(label + "": "");
+            while (current != null) {
+                System.out.print(current.data + "" -> "");
+                current = current.next;
+            }
+            System.out.println(""null"");
+        }
+    }
+
+    // --- Example Usage ---
+    public static void main(String[] args) {
+        // Odd number of nodes
+        LinkedList list1 = new LinkedList();
+        list1.insert(10);
+        list1.insert(20);
+        list1.insert(30);
+        list1.insert(40);
+        list1.insert(50);
+        list1.display(""Original (5 nodes)"");
+
+        LinkedList first1 = new LinkedList();
+        LinkedList second1 = new LinkedList();
+        list1.split(first1, second1);
+        first1.display(""First Half "");
+        second1.display(""Second Half"");
+        // First Half:  10 -> 20 -> 30 -> null
+        // Second Half: 40 -> 50 -> null
+
+        System.out.println();
+
+        // Even number of nodes
+        LinkedList list2 = new LinkedList();
+        list2.insert(10);
+        list2.insert(20);
+        list2.insert(30);
+        list2.insert(40);
+        list2.display(""Original (4 nodes)"");
+
+        LinkedList first2 = new LinkedList();
+        LinkedList second2 = new LinkedList();
+        list2.split(first2, second2);
+        first2.display(""First Half "");
+        second2.display(""Second Half"");
+        // First Half:  10 -> 20 -> null
+        // Second Half: 30 -> 40 -> null
+    }
+}
+",1
+"while True:
+  try:
+    a, b = map(int, input().split())
+  except EOFError:
+    break
+  count=1
+  k=a+b
+  while k>=10:
+    k//=10
+    count+=1
+  print(count)",0
+"// robustness testing comment
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <limits>
+
+using namespace std;
+
+// Define an edge as a pair of {weight, destination}
+typedef pair<int, int> Edge;
+
+class Graph {
+    int V;
+    vector<vector<Edge>> adj;
+
+public:
+    Graph(int V) : V(V), adj(V) {}
+
+    void addEdge(int u, int v, int weight) {
+        adj[u].push_back({weight, v});
+        adj[v].push_back({weight, u}); // Undirected
+    }
+
+    // Finds the shortest path from start vertex to all others
+    void dijkstra(int start) {
+        // Min-heap priority queue: stores {distance, vertex}
+        priority_queue<Edge, vector<Edge>, greater<Edge>> pq;
+        vector<int> dist(V, numeric_limits<int>::max());
+
+        pq.push({0, start});
+        dist[start] = 0;
+
+        while (!pq.empty()) {
+            int currentDist = pq.top().first;
+            int u = pq.top().second;
+            pq.pop();
+
+            // Skip if we found a shorter path already
+            if (currentDist > dist[u]) continue;
+
+            // Check all neighbors
+            for (auto& edge : adj[u]) {
+                int weight = edge.first;
+                int v = edge.second;
+
+                if (dist[u] + weight < dist[v]) {
+                    dist[v] = dist[u] + weight;
+                    pq.push({dist[v], v});
+                }
+            }
+        }
+
+        cout << ""Dijkstra Distances from vertex "" << start << "":\n"";
+        for (int i = 0; i < V; ++i) {
+            cout << ""To "" << i << "" -> "" << dist[i] << endl;
+        }
+    }
+};
+
+int main() {
+    Graph g(5);
+    g.addEdge(0, 1, 10);
+    g.addEdge(0, 4, 3);
+    g.addEdge(1, 2, 2);
+    g.addEdge(1, 4, 4);
+    g.addEdge(2, 3, 9);
+    g.addEdge(3, 4, 2);
+
+    g.dijkstra(0);
+    return 0;
+}",1
+"#include <stdio.h>
+
+int main() {
+  int N;
+  
+  // Lire l'entier N
+  printf(""Entrez un entier N: "");
+  scanf(""%d"", &N);
+  
+  // Initialiser la somme
+  long long somme = 0;
+  
+  // Calculer la somme des cubes de 5^3 à N^3
+  for (int i = 5; i <= N; ++i) {
+    somme += (long long)i * i * i; // i^3
+  }
+  
+  // Afficher le résultat
+  printf(""La somme des cubes de 5 à %d est: %lld\n"", N, somme);
+  
+  return 0;
+}",1
+"#include <iostream>
+#include <fstream>
+
+void copyFile(const std::string &src, const std::string &dest) {
+  std::ifstream srcFile(src, std::ios::binary);
+  std::ofstream destFile(dest, std::ios::binary);
+  destFile << srcFile.rdbuf();
+  std::cout << ""File copied to: "" << dest << std::endl;
+}
+
+int main() {
+  copyFile(""path/to/source.txt"", ""path/to/destination.txt"");
+  return 0;
+}",1
+"def insertion_sort(arr: list) -> list:
+    """"""Sorts a list in ascending order using the Insertion Sort algorithm.""""""
+    # Traverse from 1 to len(arr)
+    for i in range(1, len(arr)):
+        key = arr[i]
+        
+        # Move elements of arr[0..i-1], that are greater than key,
+        # to one position ahead of their current position
+        j = i - 1
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+        
+    return arr
+
+# Example Usage
+if __name__ == ""__main__"":
+    sample_data = [12, 11, 13, 5, 6]
+    print(""Original array:"", sample_data)
+    sorted_data = insertion_sort(sample_data.copy())
+    print(""Insertion Sorted array:"", sorted_data)",1
+"class Node  
+{  
+    int key, height;  
+    Node left, right;  
+  
+    Node(int d)  
+    {  
+        key = d;  
+        height = 1;  
+    }  
+}  
+  
+class AVLTree  
+{  
+    Node root;  
+  
+    //function to get height of the tree  
+    int height(Node N)  
+    {  
+        if (N == null)  
+            return 0;  
+        return N.height;  
+    }  
+  
+    //function to get maximum of two integers  
+    int max(int a, int b)  
+    {  
+        return (a > b) ? a : b;  
+    }  
+  
+    // A utility function to right rotate subtree rooted with y  
+    Node rightRotate(Node y)  
+    {  
+        Node x = y.left;  
+        Node T2 = x.right;  
+  
+        // Perform rotation  
+        x.right = y;  
+        y.left = T2;  
+  
+        // Update heights  
+        y.height = max(height(y.left), height(y.right)) + 1;  
+        x.height = max(height(x.left), height(x.right)) + 1;  
+  
+        // Return new root  
+        return x;  
+    }  
+  
+    // function to left rotate subtree rooted with x  
+    Node leftRotate(Node x)  
+    {  
+        Node y = x.right;  
+        Node T2 = y.left;  
+  
+        // Perform rotation  
+        y.left = x;  
+        x.right = T2;  
+  
+        // Update heights  
+        x.height = max(height(x.left), height(x.right)) + 1;  
+        y.height = max(height(y.left), height(y.right)) + 1;  
+  
+        // Return new root  
+        return y;  
+    }  
+  
+    // Get Balance factor of node N  
+    int getBalance(Node N)  
+    {  
+        if (N == null)  
+            return 0;  
+        return height(N.left) - height(N.right);  
+    }  
+  
+    Node insert(Node node, int key)  
+    {  
+        /* 1. Perform the normal BST rotation */
+        if (node == null)  
+            return (new Node(key));  
+  
+        if (key < node.key)  
+            node.left = insert(node.left, key);  
+        else if (key > node.key)  
+            node.right = insert(node.right, key);  
+        else // Equal keys not allowed  
+            return node;  
+  
+        /* 2. Update height of this ancestor node */
+        node.height = 1 + max(height(node.left),  
+                            height(node.right));  
+  
+        /* 3. Get the balance factor of this ancestor  
+        node to check whether this node became  
+        Wunbalanced */
+        int balance = getBalance(node);  
+  
+        // If this node becomes unbalanced, then  
+        // there are 4 cases Left Left Case  
+        if (balance > 1 && key < node.left.key)  
+            return rightRotate(node);  
+  
+        // Right Right Case  
+        if (balance < -1 && key > node.right.key)  
+            return leftRotate(node);  
+  
+        // Left Right Case  
+        if (balance > 1 && key > node.left.key)  
+        {  
+            node.left = leftRotate(node.left);  
+            return rightRotate(node);  
+        }  
+  
+        // Right Left Case  
+        if (balance < -1 && key < node.right.key)  
+        {  
+            node.right = rightRotate(node.right);  
+            return leftRotate(node);  
+        }  
+  
+        /* return the (unchanged) node pointer */
+        return node;  
+    }  
+  
+    /* Given a non-empty binary search tree, return the  
+    node with minimum key value found in that tree.  
+    Note that the entire tree does not need to be  
+    searched. */
+    Node minValueNode(Node node)  
+    {  
+        Node current = node;  
+  
+        /* loop down to find the leftmost leaf */
+        while (current.left != null)  
+        current = current.left;  
+  
+        return current;  
+    }  
+  
+    Node deleteNode(Node root, int key)  
+    {  
+        // STEP 1: PERFORM STANDARD BST DELETE  
+        if (root == null)  
+            return root;  
+  
+        // If the key to be deleted is smaller than the root's key, then it lies in left subtree  
+        if (key < root.key)  
+            root.left = deleteNode(root.left, key);  
+  
+        // If the key to be deleted is greater than the root's key, then it lies in right subtree  
+        else if (key > root.key)  
+            root.right = deleteNode(root.right, key);  
+  
+        // if key is same as root's key, then this is the node to be deleted  
+        else
+        {  
+  
+            // node with only one child or no child  
+            if ((root.left == null) || (root.right == null))  
+            {  
+                Node temp = null;  
+                if (temp == root.left)  
+                    temp = root.right;  
+                else
+                    temp = root.left;  
+  
+                // No child case  
+                if (temp == null)  
+                {  
+                    temp = root;  
+                    root = null;  
+                }  
+                else // One child case  
+                    root = temp; // Copy the contents of the non-empty child  
+            }  
+            else
+            {  
+  
+                // node with two children: Get the inorder successor (smallest in the right subtree)  
+                Node temp = minValueNode(root.right);  
+  
+                // Copy the inorder successor's data to this node  
+                root.key = temp.key;  
+  
+                // Delete the inorder successor  
+                root.right = deleteNode(root.right, temp.key);  
+            }  
+        }  
+  
+        // If the tree had only one node then return  
+        if (root == null)  
+            return root;  
+  
+        // STEP 2: UPDATE HEIGHT OF THE CURRENT NODE  
+        root.height = max(height(root.left), height(root.right)) + 1;  
+  
+        // STEP 3: GET THE BALANCE FACTOR OF THIS NODE (to check whether  this node became unbalanced)  
+        int balance = getBalance(root);  
+  
+        // If this node becomes unbalanced, then there are 4 cases Left Left Case  
+        if (balance > 1 && getBalance(root.left) >= 0)  
+            return rightRotate(root);  
+  
+        // Left Right Case  
+        if (balance > 1 && getBalance(root.left) < 0)  
+        {  
+            root.left = leftRotate(root.left);  
+            return rightRotate(root);  
+        }  
+  
+        // Right Right Case  
+        if (balance < -1 && getBalance(root.right) <= 0)  
+            return leftRotate(root);  
+  
+        // Right Left Case  
+        if (balance < -1 && getBalance(root.right) > 0)  
+        {  
+            root.right = rightRotate(root.right);  
+            return leftRotate(root);  
+        }  
+  
+        return root;  
+    }  
+  
+    // A utility function to print preorder traversal of  the tree. The function also prints height of every node  
+    void preOrder(Node node)  
+    {  
+        if (node != null)  
+        {  
+            System.out.print(node.key + "" "");  
+            preOrder(node.left);  
+            preOrder(node.right);  
+        }  
+    }  
+  
+    public static void main(String[] args)  
+    {  
+        AVLTree tree = new AVLTree();  
+  
+        /* Constructing tree given in the above figure */
+        tree.root = tree.insert(tree.root, 9);  
+        tree.root = tree.insert(tree.root, 5);  
+        tree.root = tree.insert(tree.root, 10);  
+        tree.root = tree.insert(tree.root, 0);  
+        tree.root = tree.insert(tree.root, 6);  
+        tree.root = tree.insert(tree.root, 11);  
+        tree.root = tree.insert(tree.root, -1);  
+        tree.root = tree.insert(tree.root, 1);  
+        tree.root = tree.insert(tree.root, 2);  
+  
+        /* The constructed AVL Tree would be  
+        9  
+        / \  
+        1 10  
+        / \ \  
+        0 5 11  
+        / / \  
+        -1 2 6  
+        */
+        System.out.println(""Preorder traversal of ""+  
+                            ""constructed tree is : "");  
+        tree.preOrder(tree.root);  
+  
+        tree.root = tree.deleteNode(tree.root, 10);  
+  
+        /* The AVL Tree after deletion of 10  
+        1  
+        / \  
+        0 9  
+        / /\  
+       -1 5 11  
+       / \  
+       2 6  
+        */
+        System.out.println("""");  
+        System.out.println(""Preorder traversal after ""+  
+                        ""deletion of 10 :"");  
+        tree.preOrder(tree.root);  
+    }  
+}  
+",0
+"N, K, C = map(int, input().split())
+S = input()
+
+right, left = [0 for _ in range(N)], [0 for _ in range(N)]
+
+cnt = 0
+work = 0
+while True:
+  if work == K:
+    break
+  if S[cnt] != ""x"":
+    right[cnt] += 1
+    work += 1
+    cnt += C+1
+  else:
+    cnt += 1
+
+S = list(reversed(S))
+
+cnt = 0
+work = 0
+while True:
+  if work == K:
+    break
+  if S[cnt] != ""x"":
+    left[cnt] += 1
+    work += 1
+    cnt += C+1
+  else:
+    cnt += 1
+
+left.reverse()
+# print(right)
+# print(left)
+
+cnt1 = 0
+cnt2 = 0
+for i in range(N):
+  if right[i] == 1:
+    cnt1 += 1
+  if left[i] == 1:
+    cnt2 += 1
+  if right[i] == left[i] == 1 and cnt1 == cnt2:
+    print(i+1)",0
+"// robustness testing comment
+import Java.util.*;
+
+public class Main{
+
+   public static void main(String[] args){
+     
+     Scanner sc = new Scanner(System.in);
+     int a = sc.nextInt();
+     int b = sc.nextInt();
+     
+     if( Integer.lowestOneBit(a) != 1 || Integer.lowestOneBit(b) != 1){
+      System.out.println(""Even"");
+     } else{
+      System.out.println(""Odd"");
+     }
+    
+   }
+}",0
+"// robustness testing comment
+class ExerciseLog:
+  def __init__(self):
+    self.exercises = []
+
+  def add_exercise(self, name, duration):
+    self.exercises.append((name, duration))
+
+  def display_log(self):
+    for name, duration in self.exercises:
+      print(f""{name}: {duration} minutes"")
+
+log = ExerciseLog()
+log.add_exercise(""Walking"", 30)
+log.add_exercise(""Yoga"", 45)
+log.display_log()",1
+"def ternary_search(sorted_collection, target, low=None, high=None):
+    """"""Divide the sorted list into thirds recursively to find the target.""""""
+    if low is None:
+        low = 0
+    if high is None:
+        high = len(sorted_collection) - 1
+ 
+    if low > high:
+        return -1  # Base case: target not found
+ 
+    # Divide into three equal parts
+    mid1 = low + (high - low) // 3
+    mid2 = high - (high - low) // 3
+ 
+    if sorted_collection[mid1] == target:
+        return mid1
+    if sorted_collection[mid2] == target:
+        return mid2
+ 
+    if target < sorted_collection[mid1]:
+        return ternary_search(sorted_collection, target, low, mid1 - 1)
+    elif target > sorted_collection[mid2]:
+        return ternary_search(sorted_collection, target, mid2 + 1, high)
+    else:
+        return ternary_search(sorted_collection, target, mid1 + 1, mid2 - 1)
+ 
+ 
+if __name__ == ""__main__"":
+    sorted_numbers = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+    result = ternary_search(sorted_numbers, 13)
+    print(f""[Ternary Search] Target 13 found at index: {result}"")        # → 6
+",1
+"// robustness testing comment
+public class BinarySearchTreeCore {
+    static class Node {
+        int data;
+        Node left, right;
+
+        public Node(int data) {
+            this.data = data;
+        }
+    }
+
+    private Node root;
+
+    // Helper method to display elements using a simple inline system
+    public void printRoot() {
+        if (root != null) {
+            System.out.println(""BST Core created. Root element is: "" + root.data);
+        }
+    }
+
+    public static void main(String[] args) {
+        BinarySearchTreeCore bst = new BinarySearchTreeCore();
+        // Constructing a valid BST structure manually
+        bst.root = new Node(20);
+        bst.root.left = new Node(10);
+        bst.root.right = new Node(30);
+
+        bst.printRoot();
+    }
+}",1
+"/**
+ * @file
+ * @brief Implements [Sub-set sum problem]
+ * (https://en.wikipedia.org/wiki/Subset_sum_problem) algorithm, which tells
+ * whether a subset with target sum exists or not.
+ *
+ * @details
+ * In this problem, we use dynamic programming to find if we can pull out a
+ * subset from an array whose sum is equal to a given target sum. The overall
+ * time complexity of the problem is O(n * targetSum) where n is the size of
+ * the array. For example, array = [1, -10, 2, 31, -6], targetSum = -14.
+ * Output: true => We can pick subset [-10, 2, -6] with sum as
+ * (-10) + 2 + (-6) = -14.
+ * @author [KillerAV](https://github.com/KillerAV)
+ */
+
+#include <cassert>        /// for std::assert
+#include <iostream>       /// for IO operations
+#include <unordered_map>  /// for unordered map
+#include <vector>         /// for std::vector
+
+/**
+ * @namespace dynamic_programming
+ * @brief Dynamic Programming algorithms
+ */
+namespace dynamic_programming {
+
+/**
+ * @namespace subset_sum
+ * @brief Functions for [Sub-set sum problem]
+ * (https://en.wikipedia.org/wiki/Subset_sum_problem) algorithm
+ */
+namespace subset_sum {
+
+/**
+ * Recursive function using dynamic programming to find if the required sum
+ * subset exists or not.
+ * @param arr input array
+ * @param targetSum the target sum of the subset
+ * @param dp the map storing the results
+ * @returns true/false based on if the target sum subset exists or not.
+ */
+bool subset_sum_recursion(const std::vector<int> &arr, int targetSum,
+                          std::vector<std::unordered_map<int, bool>> *dp,
+                          int index = 0) {
+    if (targetSum == 0) {  // Found a valid subset with required sum.
+        return true;
+    }
+    if (index == arr.size()) {  // End of array
+        return false;
+    }
+
+    if ((*dp)[index].count(targetSum)) {  // Answer already present in map
+        return (*dp)[index][targetSum];
+    }
+
+    bool ans =
+        subset_sum_recursion(arr, targetSum - arr[index], dp, index + 1) ||
+        subset_sum_recursion(arr, targetSum, dp, index + 1);
+    (*dp)[index][targetSum] = ans;  // Save ans in dp map.
+    return ans;
+}
+
+/**
+ * Function implementing subset sum algorithm using top-down approach
+ * @param arr input array
+ * @param targetSum the target sum of the subset
+ * @returns true/false based on if the target sum subset exists or not.
+ */
+bool subset_sum_problem(const std::vector<int> &arr, const int targetSum) {
+    size_t n = arr.size();
+    std::vector<std::unordered_map<int, bool>> dp(n);
+    return subset_sum_recursion(arr, targetSum, &dp);
+}
+}  // namespace subset_sum
+}  // namespace dynamic_programming
+
+/**
+ * @brief Test Function
+ * @return void
+ */
+static void test() {
+    // custom input vector
+    std::vector<std::vector<int>> custom_input_arr(3);
+    custom_input_arr[0] = std::vector<int>{1, -10, 2, 31, -6};
+    custom_input_arr[1] = std::vector<int>{2, 3, 4};
+    custom_input_arr[2] = std::vector<int>{0, 1, 0, 1, 0};
+
+    std::vector<int> custom_input_target_sum(3);
+    custom_input_target_sum[0] = -14;
+    custom_input_target_sum[1] = 10;
+    custom_input_target_sum[2] = 2;
+
+    // calculated output vector by pal_part Function
+    std::vector<int> calculated_output(3);
+
+    for (int i = 0; i < 3; i++) {
+        calculated_output[i] =
+            dynamic_programming::subset_sum::subset_sum_problem(
+                custom_input_arr[i], custom_input_target_sum[i]);
+    }
+
+    // expected output vector
+    std::vector<bool> expected_output{true, false, true};
+
+    // Testing implementation via assert function
+    // It will throw error if any of the expected test fails
+    // Else it will give nothing
+    for (int i = 0; i < 3; i++) {
+        assert(expected_output[i] == calculated_output[i]);
+    }
+
+    std::cout << ""All tests passed successfully!\n"";
+}
+
+/**
+ * @brief Main function
+ * @returns 0 on exit
+ */
+int main() {
+    test();  // execute the test
+    return 0;
+}
+",0
+"// robustness testing comment
+public class StackUsingArray {
+    private int[] data;
+    private int top;
+
+    public StackUsingArray(int capacity) {
+        data = new int[capacity];
+        top = -1;
+    }
+
+    public void push(int value) { data[++top] = value; }
+    public int pop() { return data[top--]; }
+    public int peek() { return data[top]; }
+    public boolean isEmpty() { return top == -1; }
+
+    public static void main(String[] args) {
+        StackUsingArray stack = new StackUsingArray(10);
+        stack.push(10); stack.push(20);
+        System.out.println(stack.pop());
+    }
+}",1
+"// robustness testing comment
+import org.opencv.core.*;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.objdetect.CascadeClassifier;
+
+public class FaceDetection {
+  static { System.loadLibrary(Core.NATIVE_LIBRARY_NAME); }
+
+  public static void main(String[] args) {
+    // Load the Haar Cascade
+    CascadeClassifier faceCascade = new CascadeClassifier(""haarcascade_frontalface_default.xml"");
+
+    // Load an image
+    Mat image = Imgcodecs.imread(""image.jpg"");
+    MatOfRect faceDetections = new MatOfRect();
+    
+    // Convert to grayscale
+    Mat gray = new Mat();
+    Imgproc.cvtColor(image, gray, Imgproc.COLOR_BGR2GRAY);
+
+    // Detect faces
+    faceCascade.detectMultiScale(gray, faceDetections);
+
+    // Draw rectangles around detected faces
+    for (Rect rect : faceDetections.toArray()) {
+      Imgproc.rectangle(image, new Point(rect.x, rect.y), 
+               new Point(rect.x + rect.width, rect.y + rect.height), 
+               new Scalar(255, 0, 0), 2);
+    }
+
+    // Save and display the result
+    Imgcodecs.imwrite(""output.jpg"", image);
+    HighGui.imshow(""Detected Faces"", image);
+    HighGui.waitKey(0);
+  }
+}",1
+"import Java.util.concurrent.ConcurrentLinkedDeque;
+
+public class ConcurrentStack<T> {
+  private final ConcurrentLinkedDeque<T> deque = new ConcurrentLinkedDeque<>();
+
+  public void push(T item) {
+    deque.push(item);
+  }
+
+  public T pop() {
+    T item = deque.poll();
+    if (item == null) {
+      throw new IllegalStateException(""Stack underflow"");
+    }
+    return item;
+  }
+
+  public T peek() {
+    T item = deque.peek();
+    if (item == null) {
+      throw new IllegalStateException(""Stack is empty"");
+    }
+    return item;
+  }
+
+  public boolean isEmpty() {
+    return deque.isEmpty();
+  }
+
+  public int size() {
+    return deque.size();
+  }
+
+  public static void main(String[] args) {
+    ConcurrentStack<Integer> stack = new ConcurrentStack<>();
+
+    // Push elements
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+
+    // Peek at the top element
+    System.out.println(""Top element: "" + stack.peek());
+
+    // Pop and print elements
+    while (!stack.isEmpty()) {
+      System.out.println(""Popped element: "" + stack.pop());
+    }
+  }
+}",1
+"import sys
+
+sys.setrecursionlimit(10 ** 8)
+ini = lambda: int(sys.stdin.readline())
+inm = lambda: map(int, sys.stdin.readline().split())
+inl = lambda: list(inm())
+ins = lambda: sys.stdin.readline().rstrip()
+debug = lambda *a, **kw: print(""\033[33m"", *a, ""\033[0m"", **dict(file=sys.stderr, **kw))
+
+N = ini()
+
+
+def solve():
+  return 800 * N - 200 * (N // 15)
+
+
+print(solve())",0
+"#include<iostream>
+#include<list>
+#include<climits>
+using namespace std;
+
+/*Algorithm Complexity O(VE)
+Following are the detailed steps.
+
+Input: Graph and a source vertex src
+Output: Shortest distance to all vertices from src. If there is a negative weight cycle, then shortest distances are not calculated, negative weight cycle is reported.
+
+1) This step initializes distances from source to all vertices as infinite and distance to source itself as 0. Create an array dist[] of size |V| with all values as infinite except dist[src] where src is source vertex.
+2) This step calculates shortest distances. Do following |V|-1 times where |V| is the number of vertices in given graph.
+�..a) Do following for each edge u-v
+������If dist[v] > dist[u] + weight of edge uv, then update dist[v]
+�������.dist[v] = dist[u] + weight of edge uv
+3) This step reports if there is a negative weight cycle in graph. Do following for each edge u-v
+��If dist[v] > dist[u] + weight of edge uv, then �Graph contains negative weight cycle�
+The idea of step 3 is, step 2 guarantees shortest distances if graph doesn�t contain negative weight cycle. If we iterate through all edges one more time and get a shorter path for any vertex, then there is a negative weight cycle
+
+ Like other Dynamic Programming Problems, the algorithm calculate shortest paths in bottom-up manner. It first calculates the shortest distances for the shortest paths which have at-most one edge in the path. Then, it calculates shortest paths with at-nost 2 edges, and so on.
+ After the ith iteration of outer loop, the shortest paths with at most i edges are calculated.
+ There can be maximum |V| � 1 edges in any simple path, that is why the outer loop runs |v| � 1 times.
+
+*/
+
+
+class Graph{
+    int V,E;
+
+    struct Edge{
+    int v,w;
+    int weight;
+    };
+
+    list<Edge> edges;
+public:
+    Graph(int V,int E);
+    void addEdge(int s,int d,int w);
+    void bellmanFord(int s);
+};
+
+Graph::Graph(int V,int E){
+this->V= V;
+this->E=E;
+}
+
+void Graph::addEdge(int s,int d,int wt)
+{
+    struct Edge e;
+    e.v=s;
+    e.w=d;
+    e.weight=wt;
+    edges.push_back(e);
+}
+
+void Graph::bellmanFord(int s){
+    int dist[V];
+
+    for(int i=0;i<V;i++)
+        dist[i]=INT_MAX;
+    dist[s]=0;
+    list<Edge>::iterator j;
+    for(int i=1;i<V;i++){ //Relax ALL edges V-1 times.
+        for(j=edges.begin();j!=edges.end();j++){
+            int v =  (*j).v;
+            int w =  (*j).w;
+            int weight = (*j).weight;
+            if(dist[v]+ weight < dist[w])
+                dist[w]=dist[v]+weight;
+        }
+    }
+
+    //Check for negative cycle
+    for(j=edges.begin();j!=edges.end();j++){
+            int v =  (*j).v;
+            int w =  (*j).w;
+            int weight = (*j).weight;
+            if(dist[v]+ weight < dist[w])
+                cout<<""Negative Cycle Exists !""<<endl;
+        }
+    //Print the solution
+    cout<<""Vertex - Distance from Source""<<endl;
+    for(int i=0;i<V;i++){
+        cout<<i<<""  ""<<dist[i]<<endl;
+    }
+}
+
+
+int main(){
+
+Graph g(5,8);
+g.addEdge(0,1,-1);
+g.addEdge(0,2,4);
+g.addEdge(1,2,3);
+g.addEdge(1,3,2);
+g.addEdge(1,4,2);
+g.addEdge(3,2,5);
+g.addEdge(3,1,1);
+g.addEdge(4,3,-3);
+
+g.bellmanFord(0);
+
+return 0;
+}
+",0
+"public class PolynomialDivision {
+
+  public static void polynomialDivision() {
+    // Coefficients of the polynomial 3x^3 - 5x^2 + 2x - 1
+    double[] numerator = {3, -5, 2, -1};
+    // Coefficients of the divisor x - 1
+    double[] denominator = {1, -1};
+
+    // Polynomial division algorithm (simplified)
+    System.out.println(""Perform polynomial division manually for detailed steps."");
+    System.out.println(""Quotient: x^2 - 4x + 2"");
+    System.out.println(""Remainder: 1"");
+  }
+
+  public static void main(String[] args) {
+    polynomialDivision();
+  }
+}",1
+"N, M = map(int, input().split())
+l, r = 1, N
+for i in range(M):
+  L, R = map(int, input().split())
+  l, r = max(l, L), min(r, R)
+if r - l >= 0:
+  print(min(r - l + 1, N))
+else:
+  print(0)",0
+"def square_meters_to_km2(sq_meters):
+  return sq_meters / 1_000_000 # 1 km² = 1,000,000 m²
+
+def km2_to_square_meters(km2):
+  return km2 * 1_000_000 # 1 km² = 1,000,000 m²
+
+sq_meters = 5000000
+km2 = square_meters_to_km2(sq_meters)
+print(f""{sq_meters} square meters is equal to {km2} square kilometers."")
+
+km2 = 5
+sq_meters = km2_to_square_meters(km2)
+print(f""{km2} square kilometers is equal to {sq_meters} square meters."")",1
+"#include<bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define ar array
+
+int main() {
+
+    ios::sync_with_stdio(false);
+    
+   int a, b, x,y,z;
+   
+   cin >> a >> b;
+   
+   x = a+b;
+   y = a-b;
+   z = a*b;
+   
+   cout << max(max(x,y),z) << endl;
+   
+   
+    return 0;
+}",0
+"// robustness testing comment
+def double_linear_search(collection, target):
+    """"""Search from both ends of the list towards the middle simultaneously.""""""
+    left = 0
+    right = len(collection) - 1
+ 
+    while left <= right:
+        if collection[left] == target:
+            return left   # Found from the left pointer
+        if collection[right] == target:
+            return right  # Found from the right pointer
+        left += 1
+        right -= 1
+ 
+    return -1  # Target not found
+ 
+ 
+if __name__ == ""__main__"":
+    numbers = [5, 3, 8, 1, 9, 2, 7, 4, 6]
+    result = double_linear_search(numbers, 7)
+    print(f""[Double Linear Search] Target 7 found at index: {result}"")   # → 6",1
+"#include <iostream>
+
+void simulate_epidemic_with_birth_death(int days, double beta, double gamma, double birth_rate, double death_rate, int initial_infected, int population) {
+  double susceptible = population - initial_infected;
+  double infected = initial_infected;
+  double recovered = 0;
+
+  for (int day = 0; day < days; day++) {
+    double new_infected = beta * susceptible * infected / population;
+    double new_recovered = gamma * infected;
+    double births = birth_rate * population;
+    double deaths = death_rate * (susceptible + infected + recovered);
+
+    susceptible += births - deaths;
+    infected += new_infected - new_recovered;
+    recovered += new_recovered;
+
+    std::cout << ""Day "" << day << "": Susceptible: "" << susceptible << "", Infected: "" << infected << "", Recovered: "" << recovered << std::endl;
+  }
+}
+
+int main() {
+  simulate_epidemic_with_birth_death(30, 0.3, 0.1, 0.01, 0.005, 1, 1000);
+  return 0;
+}",1
+"// robustness testing comment
+#include <iostream>
+using namespace std;
+
+int main()
+{
+ int a,b,sum,digit=0;
+ try{
+  while(1){
+   digit = 0;
+   cin >> a >> b;
+   sum = a + b;
+   while(sum > 0){
+	sum /= 10;
+	digit++;
+   }
+   cout << digit;
+  }
+ }catch(...){
+  return 0;
+ }
+}",0
+"def quick_sort(arr: list) -> list:
+    """"""Sorts a list in ascending order using the Quick Sort algorithm.""""""
+    # Base case: arrays with 0 or 1 element are already sorted
+    if len(arr) <= 1:
+        return arr
+    
+    # Choosing the middle element as pivot
+    pivot = arr[len(arr) // 2]
+    
+    # Partition the elements into three categories
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+    
+    # Recursively sort the sub-arrays and combine them
+    return quick_sort(left) + middle + quick_sort(right)
+
+# Example Usage
+if __name__ == ""__main__"":
+    sample_data = [10, 7, 8, 9, 1, 5]
+    print(""Original array:"", sample_data)
+    sorted_data = quick_sort(sample_data.copy())
+    print(""Quick Sorted array:"", sorted_data)",1
+"import random
+ 
+def hill_climbing(objective_function, initial_solution, step_size=1, max_iterations=1000):
+    """"""
+    Maximise objective_function by moving to better neighbours.
+ 
+    Parameters
+    ----------
+    objective_function : callable  – function to maximise
+    initial_solution   : float     – starting x value
+    step_size          : float     – how far to try each step
+    max_iterations     : int       – safety cap on iterations
+    """"""
+    current_solution = initial_solution
+    current_score = objective_function(current_solution)
+ 
+    for _ in range(max_iterations):
+        # Evaluate left and right neighbours
+        left_neighbour = current_solution - step_size
+        right_neighbour = current_solution + step_size
+ 
+        left_score = objective_function(left_neighbour)
+        right_score = objective_function(right_neighbour)
+ 
+        best_neighbour_score = max(left_score, right_score)
+ 
+        if best_neighbour_score <= current_score:
+            break  # No improvement found – at a local maximum
+ 
+        # Move to the better neighbour
+        if left_score > right_score:
+            current_solution = left_neighbour
+        else:
+            current_solution = right_neighbour
+ 
+        current_score = best_neighbour_score
+ 
+    return current_solution, current_score
+ 
+ 
+if __name__ == ""__main__"":
+    # Maximise f(x) = -(x - 3)^2 + 9  →  peak at x = 3, f(3) = 9
+    def peak_function(x):
+        return -(x - 3) ** 2 + 9
+ 
+    best_x, best_score = hill_climbing(peak_function, initial_solution=0.0, step_size=0.1)
+    print(f""[Hill Climbing] Best x={best_x:.2f}, f(x)={best_score:.2f}"")  # x≈3, f≈9
+",1
+"#include<stdio.h>
+
+int main(){
+ int W,H,x,y, s;
+ scanf(""%d %d %d %d"", &W,&H, &x, &y);
+ if(x + x == W && y + y == H){
+  s = 1;
+ } else {
+  s = 0;
+ };
+ printf(""%f %d"", (double)W*H/2 ,s);
+
+ return 0;
+}",0
+"S = input()
+
+S_set = set(S)
+if len(S_set) % 2 == 0:
+    if S_set == set() or S_set == set(['N', 'S']) or S_set == set(['E', 'W']) or S_set == set(['N', 'S', 'E', 'W']):
+        print('Yes')
+    else:
+        print('No')
+else:
+    print('No')",0
+"class MyStack<T> implements StackFunctions<T> {
+    T[] array;
+    int top;
+    Class<T> newClass;
+    int size;
+
+    @SuppressWarnings(""unchecked"")
+    MyStack(Class<T> tush) {
+        this.size = 1;
+        this.newClass = tush;
+        this.array = (T[]) Array.newInstance(tush,this.size);
+        this.top=0;
+    }
+
+    @Override
+    public void push(T value) {
+        if(top>=0){
+            array = resize();
+        }
+        this.array[this.top++]=value;
+    }
+
+    @SuppressWarnings(""unchecked"")
+    T[]  resize(){
+        T[] newArray = (T[]) Array.newInstance(newClass,this.size++);
+        System.arraycopy(array,0,newArray,0,array.length);
+        return newArray;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return top==0;
+    }
+
+    @Override
+    @SuppressWarnings(""unchecked"")
+    public T pop() {
+        if(!isEmpty()) {
+            T object = array[-1+top--];
+            T[] newArray = (T[]) Array.newInstance(newClass,--this.size-1);
+            System.arraycopy(array,0,newArray,0,newArray.length);
+            array = newArray;
+            return object;
+        }
+        else {
+            this.top = 0;
+            throw new EmptyStackException();
+        }
+    }
+
+    @Override
+    public void display() {
+        for (T e : array){
+            System.out.println(e);
+        }
+    }
+
+}",0
+"import Java.io.*;
+import Java.util.*;
+import Java.math.*;
+ 
+public class Main{
+  public static void main(String[] args){ new Main().solve();}
+  
+  static Scanner scan = new Scanner(System.in);
+  static final int MOD = 1_000_000_007;
+  static final int INF = 2147483647;
+ 
+  // Scanner
+  int ni(){return Integer.parseInt(scan.next());}
+  int[] ni(int n){int[] a = new int[n]; for(int i = 0; i < n; i++){a[i] = ni();} return a;}
+  int[][] ni(int y, int x){int[][] a = new int[y][x];
+    for(int i = 0; i < y; i++){for(int j = 0; j < x; j++){a[i][j] = ni();}} return a;}
+  long nl(){return Long.parseLong(scan.next());}
+  long[] nl(int n){long[] a = new long[n]; for(int i = 0; i < n; i++){a[i] = nl();} return a;}
+  long[][] nl(int y, int x){long[][] a = new long[y][x];
+    for(int i = 0; i < y; i++){for(int j = 0; j < x; j++){a[i][j] = nl();}} return a;}
+  String ns(){return scan.next();}
+  String[] ns(int n){String[] a = new String[n]; for(int i = 0; i < n; i++){a[i] = ns();} return a;}
+  String[][] ns(int y, int x){String[][] a = new String[y][x];
+    for(int i = 0; i < y; i++){for(int j = 0; j < x; j++){a[i][j] = ns();}} return a;}
+ 
+  // Math
+  int max(int a, int b){return Math.max(a, b);}
+  long max(long a, long b){return Math.max(a, b);}
+  double max(double a, double b){return Math.max(a, b);}
+  int max(int[] a){int max = a[0]; for(int value:a){max = max(max,value);} return max;}
+  long max(long[] a){long max = a[0]; for(long value:a){max = max(max,value);} return max;}
+  double max(double[] a){double max = a[0]; for(double value:a){max = max(max,value);} return max;}
+  int min(int a, int b){return Math.min(a, b);}
+  long min(long a, long b){return Math.min(a, b);}
+  double min(double a, double b){return Math.min(a, b);}
+  int min(int[] a){int min = a[0]; for(int value:a){min = min(min,value);} return min;}
+  long min(long[] a){long min = a[0]; for(long value:a){min = min(min,value);} return min;}
+  double min(double[] a){double min = a[0]; for(double value:a){min = min(min,value);} return min;}
+  long sum(int[] a){long sum = 0; for(int value:a){sum += value;} return sum;}
+  long sum(long[] a){long sum = 0; for(long value:a){sum += value;} return sum;}
+  double sum(double[] a){double sum = 0; for(double value:a){sum += value;} return sum;}
+  int gcd(int a, int b){return b == 0 ? a : gcd(b, a % b);}
+  long gcd(long a, long b){return b == 0 ? a : gcd(b, a % b);}
+  int lcm(int a, int b){return a / gcd(a, b) * b;}
+  long lcm(long a, long b){return a / gcd(a, b) * b;}
+ 
+  // Array
+  void sort(int[] a){ Arrays.sort(a);}
+  void sort(long[] a){ Arrays.sort(a);}
+  void sort(double[] a){ Arrays.sort(a);}
+  void sort(String[] a){ Arrays.sort(a);}
+  int[] reverse(int[] a){
+    int[] reversed = new int[a.length];
+    for(int i = 0; i < a.length; i++){
+      reversed[a.length - i - 1] = a[i];
+    }
+    return reversed;
+  }
+  long[] reverse(long[] a){
+    long[] reversed = new long[a.length];
+    for(int i = 0; i < a.length; i++){
+      reversed[a.length - i - 1] = a[i];
+    }
+    return reversed;
+  }
+  double[] reverse(double[] a){
+    double[] reversed = new double[a.length];
+    for(int i = 0; i < a.length; i++){
+      reversed[a.length - i - 1] = a[i];
+    }
+    return reversed;
+  }
+  String[] reverse(String[] a){
+    String[] reversed = new String[a.length];
+    for(int i = 0; i < a.length; i++){
+      reversed[a.length - i - 1] = a[i];
+    }
+    return reversed;
+  }
+  boolean[] reverse(boolean[] a){
+    boolean[] reversed = new boolean[a.length];
+    for(int i = 0; i < a.length; i++){
+      reversed[a.length - i - 1] = a[i];
+    }
+    return reversed;
+  }
+  void fill(int[] array, int x) { Arrays.fill(array, x); }
+  void fill(long[] array, long x) { Arrays.fill(array, x); }
+  void fill(double[] array, double x) { Arrays.fill(array, x); }
+  void fill(boolean[] array, boolean x) { Arrays.fill(array, x); }
+  void fill(int[][] array, int x) { for(int a[] : array) { fill(a, x); } }
+  void fill(long[][] array, long x) { for(long a[] : array) { fill(a, x); } }
+  void fill(double[][] array, double x) { for(double a[] : array) { fill(a, x); } }
+  void fill(boolean[][] array, boolean x) { for(boolean a[] : array) { fill(a, x); } }
+ 
+ 
+  public void solve(){
+		String s = ns();
+		
+		for(int i = 0; i < 3; i++){
+			if(s.charAt(i) == '1'){
+				System.out.print(9);
+			} else {
+				System.out.print(1);
+			}
+		}
+		System.out.println();
+		
+  }
+}",0
+"#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <climits>
+#include <cfloat>
+#include <ctime>
+#include <map>
+#include <utility>
+#include <set>
+#include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <functional>
+#include <sstream>
+#include <complex>
+#include <stack>
+#include <queue>
+#include <numeric>
+
+using namespace std;
+
+#ifdef _MSC_VER
+#define __typeof__ decltype
+
+template <class T>
+int __builtin_popcount(T n) { return n ? 1 + __builtin_popcount(n & (n - 1)) : 0; }
+#endif
+
+#define foreach(it, c) for (__typeof__((c).begin()) it=(c).begin(); it != (c).end(); ++it)
+#define all(c) (c).begin(), (c).end()
+#define rall(c) (c).rbegin(), (c).rend()
+#define popcount __builtin_popcount
+
+const double EPS = 1e-10;
+typedef long long ll;
+typedef pair<int, int> pint;
+
+
+int main()
+{
+	int n, k;
+	while (scanf(""%d%d"", &n, &k), n|k)
+	{
+		int a[100000];
+		for (int i = 0; i < n; ++i)
+			scanf(""%d"", a + i);
+		int res, sum;
+		res = sum = accumulate(a, a+k, 0);
+		for (int i = k; i < n; ++i)
+		{
+			sum += a[i] - a[i-k];
+			res = max(res, sum);
+		}
+		printf(""%d\n"", res);
+	}
+}",0
+"// =============================================================
+// Dynamic Programming: Unique Paths
+// =============================================================
+// A robot on an m x n grid starts at the top-left (0,0) and
+// must reach the bottom-right (m-1, n-1). It can only move
+// right or down. Count the number of distinct paths.
+//
+// Subproblem: dp[i][j] = number of paths to reach cell (i, j)
+//
+// Recurrence:
+//   dp[0][j] = 1  (only one way along top row: all rights)
+//   dp[i][0] = 1  (only one way along left column: all downs)
+//   dp[i][j] = dp[i-1][j] + dp[i][j-1]
+//
+// Mathematical shortcut: C(m+n-2, m-1)  (combinatorics)
+//
+// Extension: Unique Paths II — grid contains obstacles ('1' blocks)
+//
+// Time:  O(m * n)  |  Space: O(m * n), reducible to O(n)
+// =============================================================
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+// -------------------------------------------------------------
+// Part 1: Basic unique paths (no obstacles)
+// -------------------------------------------------------------
+long long uniquePaths(int m, int n) {
+    // dp[i][j] = distinct paths to reach (i, j)
+    std::vector<std::vector<long long>> dp(m, std::vector<long long>(n, 1));
+
+    // First row and column already initialised to 1 (single path each)
+    for (int i = 1; i < m; i++) {
+        for (int j = 1; j < n; j++) {
+            dp[i][j] = dp[i - 1][j]  // From above
+                     + dp[i][j - 1]; // From left
+        }
+    }
+
+    return dp[m - 1][n - 1];
+}
+
+// -------------------------------------------------------------
+// Space-Optimised: O(n)
+// Only need the current and previous row.
+// -------------------------------------------------------------
+long long uniquePathsOptimised(int m, int n) {
+    std::vector<long long> dp(n, 1); // One path along the top row
+
+    for (int i = 1; i < m; i++) {
+        for (int j = 1; j < n; j++) {
+            // dp[j] is from the previous row (from above)
+            // dp[j-1] is the current row updated so far (from left)
+            dp[j] += dp[j - 1];
+        }
+    }
+
+    return dp[n - 1];
+}
+
+// -------------------------------------------------------------
+// Mathematical shortcut: C(m+n-2, m-1)
+// Total moves = (m-1) downs + (n-1) rights = m+n-2 total.
+// Choose which m-1 of them are ""down"" moves.
+// -------------------------------------------------------------
+long long uniquePathsMath(int m, int n) {
+    long long numerator   = 1;
+    long long denominator = 1;
+    int total = m + n - 2;
+    int choose = std::min(m - 1, n - 1); // Smaller for fewer multiplications
+
+    for (int i = 0; i < choose; i++) {
+        numerator   *= (total - i);
+        denominator *= (i + 1);
+    }
+
+    return numerator / denominator;
+}
+
+// -------------------------------------------------------------
+// Part 2: Unique Paths II — grid has obstacles
+// obstacle[i][j] = 1 means blocked, 0 means open.
+// -------------------------------------------------------------
+long long uniquePathsWithObstacles(const std::vector<std::vector<int>>& obstacleGrid) {
+    int m = obstacleGrid.size();
+    int n = obstacleGrid[0].size();
+
+    // Start or end blocked — impossible
+    if (obstacleGrid[0][0] == 1 || obstacleGrid[m - 1][n - 1] == 1) return 0;
+
+    std::vector<std::vector<long long>> dp(m, std::vector<long long>(n, 0));
+    dp[0][0] = 1;
+
+    // First column: blocked if any cell above is blocked
+    for (int i = 1; i < m; i++) {
+        dp[i][0] = (obstacleGrid[i][0] == 0) ? dp[i - 1][0] : 0;
+    }
+
+    // First row: blocked if any cell to the left is blocked
+    for (int j = 1; j < n; j++) {
+        dp[0][j] = (obstacleGrid[0][j] == 0) ? dp[0][j - 1] : 0;
+    }
+
+    for (int i = 1; i < m; i++) {
+        for (int j = 1; j < n; j++) {
+            if (obstacleGrid[i][j] == 1) {
+                dp[i][j] = 0; // Blocked cell
+            } else {
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+            }
+        }
+    }
+
+    return dp[m - 1][n - 1];
+}
+
+// -------------------------------------------------------------
+// Example Usage
+// -------------------------------------------------------------
+int main() {
+    std::cout << ""=== Unique Paths ==="" << std::endl;
+
+    // Basic unique paths
+    std::cout << ""\n-- Basic Unique Paths --"" << std::endl;
+    for (int m = 1; m <= 5; m++) {
+        for (int n = 1; n <= 5; n++) {
+            std::cout << ""("" << m << ""x"" << n << "")=""
+                      << uniquePaths(m, n) << ""  "";
+        }
+        std::cout << std::endl;
+    }
+
+    // Compare methods
+    int m = 7, n = 3;
+    std::cout << ""\nGrid "" << m << ""x"" << n << "":"" << std::endl;
+    std::cout << ""2D DP      : "" << uniquePaths(m, n) << std::endl;
+    std::cout << ""Optimised  : "" << uniquePathsOptimised(m, n) << std::endl;
+    std::cout << ""Math C(n,k): "" << uniquePathsMath(m, n) << std::endl;
+
+    // Obstacles
+    std::cout << ""\n-- Unique Paths with Obstacles --"" << std::endl;
+    std::vector<std::vector<int>> grid = {
+        {0, 0, 0},
+        {0, 1, 0},
+        {0, 0, 0}
+    };
+    std::cout << ""Grid (1=obstacle):"" << std::endl;
+    for (auto& row : grid) {
+        for (int v : row) std::cout << v << "" "";
+        std::cout << std::endl;
+    }
+    std::cout << ""Unique paths: "" << uniquePathsWithObstacles(grid)
+              << "" (expect 2)"" << std::endl;
+
+    return 0;
+}
+",1
+"#include <iostream>
+#include <cstring>
+#include <climits>
+int main()
+{
+	int n,k;
+	while(std::cin>>n>>k,n|k){
+		int memo[100000];
+		int ans = INT_MIN;
+		int cnt = 0;
+		int sum = 0;
+		memset(memo,0,sizeof(memo));
+		
+		for(int i=0; i<n; i++){
+			int a; std::cin>>memo[i];
+			if(cnt<k){
+				sum+=memo[i]; cnt++;
+			}
+			else{
+				sum = sum-memo[i-k]+memo[i];
+				//printf(""sum:%d\n"",sum);
+			}
+			if( k==cnt && sum>ans ) ans = sum;
+			//printf(""sum:%d\n"",sum);
+		}
+		printf(""%d\n"",ans);
+	}
+	return 0;
+}",0
+"# Python program for implementation of Quick Sort
+
+# divide function
+def partition(arr, low, high):
+    i = (low-1)
+    pivot = arr[high]  # pivot element
+    for j in range(low, high):
+        # If current element is smaller
+        if arr[j] <= pivot:
+            # increment
+            i = i+1
+            arr[i], arr[j] = arr[j], arr[i]
+    arr[i+1], arr[high] = arr[high], arr[i+1]
+    return i+1
+
+
+# quick sort function
+def quick_sort(arr, low, high):
+    if low < high:
+        # index
+        pi = partition(arr, low, high)
+        # sort the partitions
+        quick_sort(arr, low, pi-1)
+        quick_sort(arr, pi+1, high)
+",0
+"public class MaxNumber {
+  public static void main(String[] args) {
+    int max = 0;
+    for (int i = 0; i <= 999999; i++) {
+      if (i > max) max = i;
+    }
+    System.out.println(""Max: "" + max);
+  }
+}",1
+"def interpolation_search(sorted_collection, target):
+    """"""Search a sorted, uniformly distributed list via position interpolation.""""""
+    low = 0
+    high = len(sorted_collection) - 1
+ 
+    while low <= high and sorted_collection[low] <= target <= sorted_collection[high]:
+        # Avoid division by zero when all remaining elements are equal
+        if sorted_collection[low] == sorted_collection[high]:
+            if sorted_collection[low] == target:
+                return low
+            return -1
+ 
+        # Interpolate the probable position of the target
+        position = low + (
+            (target - sorted_collection[low])
+            * (high - low)
+            // (sorted_collection[high] - sorted_collection[low])
+        )
+ 
+        if sorted_collection[position] == target:
+            return position
+        elif sorted_collection[position] < target:
+            low = position + 1   # Target is to the right
+        else:
+            high = position - 1  # Target is to the left
+ 
+    return -1  # Target not found
+ 
+ 
+if __name__ == ""__main__"":
+    uniform_numbers = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    result = interpolation_search(uniform_numbers, 70)
+    print(f""[Interpolation Search] Target 70 found at index: {result}"")  # → 6
+",1
+"#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+struct Person {
+  char name[50];
+  int age;
+};
+
+bool estEgalArraysPersonnes(struct Person* arr1, int size1, struct Person* arr2, int size2) {
+  if (size1 != size2) return false;
+  for (int i = 0; i < size1; ++i) {
+    if (strcmp(arr1[i].name, arr2[i].name) != 0 || arr1[i].age != arr2[i].age) {
+      return false;
+    }
+  }
+  return true;
+}
+
+int main() {
+  struct Person arr1[] = {{""Alice"", 30}, {""Bob"", 25}};
+  struct Person arr2[] = {{""Alice"", 30}, {""Bob"", 25}};
+  struct Person arr3[] = {{""Charlie"", 35}, {""Alice"", 30}};
+
+  printf(""arr1 est égal à arr2: %d\n"", estEgalArraysPersonnes(arr1, 2, arr2, 2));
+  printf(""arr1 est égal à arr3: %d\n"", estEgalArraysPersonnes(arr1, 2, arr3, 2));
+
+  return 0;
+}",1
+"// robustness testing comment
+x1, y1, x2, y2 = map(float, input(""Entrez (x1, y1) et (x2, y2) : "").split())
+x3, y3, x4, y4 = map(float, input(""Entrez (x3, y3) et (x4, y4) : "").split())
+m1 = (y2 - y1) / (x2 - x1)
+m2 = (y4 - y3) / (x4 - x3)
+print(""Parallèles"" if m1 == m2 else ""Pas parallèles"")",1
+"// robustness testing comment
+import os
+from string import ascii_letters
+
+LETTERS_AND_SPACE = ascii_letters + "" \t\n""
+
+
+def load_dictionary() -> dict[str, None]:
+    path = os.path.split(os.path.realpath(__file__))
+    english_words: dict[str, None] = {}
+    with open(path[0] + ""/dictionary.txt"") as dictionary_file:
+        for word in dictionary_file.read().split(""\n""):
+            english_words[word] = None
+    return english_words
+
+
+ENGLISH_WORDS = load_dictionary()
+
+
+def get_english_count(message: str) -> float:
+    message = message.upper()
+    message = remove_non_letters(message)
+    possible_words = message.split()
+    matches = len([word for word in possible_words if word in ENGLISH_WORDS])
+    return float(matches) / len(possible_words)
+
+
+def remove_non_letters(message: str) -> str:
+    """"""
+    >>> remove_non_letters(""Hi! how are you?"")
+    'Hi how are you'
+    >>> remove_non_letters(""P^y%t)h@o*n"")
+    'Python'
+    >>> remove_non_letters(""1+1=2"")
+    ''
+    >>> remove_non_letters(""www.google.com/"")
+    'wwwgooglecom'
+    >>> remove_non_letters("""")
+    ''
+    """"""
+    return """".join(symbol for symbol in message if symbol in LETTERS_AND_SPACE)
+
+
+def is_english(
+    message: str, word_percentage: int = 20, letter_percentage: int = 85
+) -> bool:
+    """"""
+    >>> is_english('Hello World')
+    True
+    >>> is_english('llold HorWd')
+    False
+    """"""
+    words_match = get_english_count(message) * 100 >= word_percentage
+    num_letters = len(remove_non_letters(message))
+    message_letters_percentage = (float(num_letters) / len(message)) * 100
+    letters_match = message_letters_percentage >= letter_percentage
+    return words_match and letters_match
+
+
+if __name__ == ""__main__"":
+    import doctest
+
+    doctest.testmod()
+",0
+"
+using namespace std;
+typedef long long ll;
+typedef pair<int, int> pii;
+
+int main(){
+ int A,B,C;
+ cin >> A >> B >> C;
+ 
+ if(A + B >= C) cout << ""Yes"" << endl;
+ else cout << ""No"" << endl;
+ 
+}",0
+"// robustness testing comment
+import Java.util.Scanner;
+public class Main {
+ public static void main(String[] args) {
+  Scanner dataScanner = new Scanner(System.in);
+  String data = dataScanner.nextLine();
+  String[] dataList = data.split("" "");
+  int a = Integer.parseInt(dataList[0]);
+  int b = Integer.parseInt(dataList[1]);
+  if (a*b % 2 == 0) {
+   System.out.println(""Even"");
+  } else {
+   System.out.println(""Odd"");
+  }
+ } 
+}",0
+"// robustness testing comment
+def search(list_data: list, key: int, left: int = 0, right: int = 0) -> int:
+    """"""
+    Iterate through the array to find the index of key using recursion.
+    :param list_data: the list to be searched
+    :param key: the key to be searched
+    :param left: the index of first element
+    :param right: the index of last element
+    :return: the index of key value if found, -1 otherwise.
+
+    >>> search(list(range(0, 11)), 5)
+    5
+    >>> search([1, 2, 4, 5, 3], 4)
+    2
+    >>> search([1, 2, 4, 5, 3], 6)
+    -1
+    >>> search([5], 5)
+    0
+    >>> search([], 1)
+    -1
+    """"""
+    right = right or len(list_data) - 1
+    if left > right:
+        return -1
+    elif list_data[left] == key:
+        return left
+    elif list_data[right] == key:
+        return right
+    else:
+        return search(list_data, key, left + 1, right - 1)
+
+
+if __name__ == ""__main__"":
+    import doctest
+
+    doctest.testmod()
+",0
+"class RecipeCosting {
+public:
+  std::string recipeName;
+  std::map<std::string, double> ingredientCosts;
+
+  double calculateTotalCost() {
+    double total = 0.0;
+    for (const auto& [ingredient, cost] : ingredientCosts) {
+      total += cost;
+    }
+    return total;
+  }
+};",1
+"    //****************************************Linked List Class*******************************
+
+   public class LinkedList<T> {
+
+Node<T> head;
+T data;
+
+
+public LinkedList(){
+   head = null;
+   }
+
+
+
+
+public void add(T data){
+
+    Node<T> newNode = new Node<T> (data);
+    newNode.setLink(head);
+    head = newNode;
+}
+
+
+  //had problems printing out the data in the last node
+
+ public void traverse(){
+    Node<T> pointer;
+    pointer = head;
+
+while (pointer.getLink()!=null){
+        System.out.println(pointer.getData());
+        pointer = pointer.setLink(pointer.getLink());
+}
+
+//Fixed problems For last node that doesnt get printed out
+System.out.println(pointer.getData());
+
+}
+",0
+"// robustness testing comment
+// Libraries that were used
+#include <iostream>
+#include <stdio.h>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+#include <stack>
+#include <list>
+#include <utility>
+
+using namespace std;
+
+// Global Variables
+stack<int> pilha;
+vector< list<int> > scc_table, table;
+bool *inStack;
+int *low, *d, *scc, *minNodes, points, discTime = 1, n_scc = 0;
+
+/* ---------------------- getMinNode --------------------------------
+| Returns the minimal node for a certain strongly connected component
+------------------------------------------------------------------ */
+int getMinNode(int scc_id) {
+	for(int i = 0; i < points; i++) {
+		if (scc[i] == scc_id)
+			return ++i;
+	}
+	return -1;
+}
+
+/* ---------------------------- dfs ---------------------------------
+| Searchs connections between strongly connected components
+------------------------------------------------------------------ */
+void dfs(vector<list<int> > table) {
+	for(int linha = 0; linha < points; linha++) {
+		for (int &i: table[linha]) {
+			if (scc[linha] != scc[i - 1]) {
+				scc_table[scc[linha]].push_back(scc[i - 1]);
+			}
+		}
+	}
+}
+
+/* ------------------------- tarjan ---------------------------------
+| Applies Tarjan algorithm to the graph that was inputed by the user
+------------------------------------------------------------------ */
+void tarjan(int current) {
+	if (d[current] == -1) {
+		d[current] = discTime;
+		low[current] = discTime++;
+		pilha.push(current + 1);
+		inStack[current] = true;
+	}
+
+	for (int &i: table[current]) {
+		if(d[i - 1] == -1){
+			tarjan(i - 1);
+			low[current] = min(low[current], low[i - 1]);
+		}
+		else if(inStack[i - 1])
+			low[current] = min(low[current], low[i - 1]);
+	}
+	if (d[current] == low[current]){
+		int v = 0;
+		do {
+			v = pilha.top();
+			pilha.pop();
+			inStack[v - 1] = false;
+			scc[v - 1] = n_scc;
+		} while (current + 1 != v && !pilha.empty());
+		n_scc++;
+	}
+}
+
+/* ----------------------- print_scc --------------------------------
+| Used to print a strongly connected component
+------------------------------------------------------------------ */
+void print_scc() {
+	int i = 0;
+	for(list<int> l: scc_table) {
+		cout << i++ << "": "";
+		for(int &x: l)
+			cout << x << "" "";
+		cout << ""\n"";
+	}
+}
+
+bool comparator(const pair<int,int>* v1, const pair<int,int>* v2){
+	return  v1->first < v2->first;
+}
+
+/* -------------------------- mySort --------------------------------
+| Function that is used in the sort to compare between the minimum
+| node of each strongly connected component
+------------------------------------------------------------------ */
+bool mySort(const int i1, const int i2){
+	return minNodes[i1] < minNodes[i2];
+}
+
+
+/* --------------------------- main ---------------------------------
+| Executes the program
+------------------------------------------------------------------ */
+int main() {
+	int connections, init, end, i, linha, n_con = 0;
+	list<int> *l = new list<int>();
+	vector<pair<int,int>*> coordenadas;
+
+	scanf(""%d"", &points);
+	scanf(""%d"", &connections);
+
+	if(points < 2 || connections < 1) {
+		printf(""First argument must be greater than 2 and second argument must be greater than 1\n"");
+		exit(1);
+	}
+
+	for(i = 0; i < points; i++)
+		table.push_back(*l);
+
+	while (connections-- != 0) {
+		scanf(""%d %d"", &init, &end);
+		table[init - 1].push_back(end);
+	}
+
+	scc = new int[points];
+	low = new int[points];
+	d = new int[points];
+	inStack = new bool[points];
+
+	for(i = 0; i < points; i++) {
+		d[i] = -1;
+		low[i] = 0;
+		inStack[i] = false;
+	}
+
+	for(i = 0; i < points; i++) {
+		if (d[i] == -1)
+			tarjan(i);
+	}
+
+	for(i = 0; i < n_scc; i++)
+		scc_table.push_back(*l);
+
+	dfs(table);
+	free(d);
+	free(low);
+	free(inStack);
+	minNodes = new int[n_scc];
+	for (i = 0; i<  n_scc; i++)
+		minNodes[i] = getMinNode(i);
+	for(i = 0; i < n_scc; i++) {
+		scc_table[i].sort();
+		scc_table[i].unique();
+		scc_table[i].sort(mySort);
+		n_con += scc_table[i].size();
+	}
+	free(minNodes);
+    	pair<int,int> *pares;
+	for(i = 0; i < n_scc; i++) {
+		pares->first = getMinNode(i);
+		pares->second = i;
+		coordenadas.push_back(pares);
+	}
+	sort(coordenadas.begin(), coordenadas.end(), comparator);
+	printf(""%d\n%d\n"", n_scc, n_con);
+	for(i = 0; i < n_scc; i++) {
+		linha = coordenadas[i]->first;
+		for(int &x: scc_table[coordenadas[i]->second])
+			printf(""%d %d\n"", linha, getMinNode(x));
+	}
+	free(scc);
+	return  0;
+}
+",0
+"// robustness testing comment
+#include <bits/stdc++.h>
+using namespace std;
+
+#ifdef LOCAL
+#define debug(var) cerr << (#var) << "" = "" << (var) << endl;
+#else
+#define debug(var)
+#endif
+
+void init() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0); cout.tie(0);
+}
+
+void solve() {
+  int a, b, c; cin >> a >> b >> c;
+  cout << (a+b>=c?""Yes"":""No"");
+}
+
+int main() {
+  init();
+  int t = 1; //scanf(""%d"", &t);
+  while (t--) {
+    solve();
+  }
+  return 0;
+}",0
+"def somme_n_nombres(n):
+  total = 0
+  compteur = 0
+  while compteur < n:
+    nombre = float(input(""Entrez un nombre positif : ""))
+    if nombre > 0:
+      total += nombre
+      compteur += 1
+    else:
+      print(""Veuillez entrer un nombre positif."")
+  return total
+
+# Exemple d'utilisation
+n = int(input(""Combien de nombres souhaitez-vous entrer ? ""))
+somme = somme_n_nombres(n)
+print(f""La somme des {n} nombres est : {somme}"")",1
+"#include <stdio.h>
+#include <string.h>
+
+int main (void)
+{
+  int i,k=0;
+  char s[11];
+  char a[11];
+  scanf(""%s"",a);
+  for(i=0;i<strlen(a);i++)
+  {
+    if(a[i]=='0')
+    {
+      s[k++]='0';
+    }else{
+      if(a[i]=='1')
+      {
+        s[k++]='1';
+      }else{
+        if(k>0)
+        {
+          k--;
+        }
+      }
+    }
+  }
+  for(i=0;i<k;i++)
+  {
+    printf(""%c"",s[i]);
+  }
+  putchar('\n');
+  return 0;
+}",0
+"// robustness testing comment
+import java.util.*;
+public class Main
+{   static Scanner s=new Scanner(System.in);
+    static  Node front=null;
+     static   Node rear=null;
+     static Node top=null;
+    static class Node{
+        int data;
+        Node next;
+       
+        
+    
+    Node(int item){
+        data=item;
+        next=null;
+    }
+    }
+    static void enqueue(){
+        System.out.println(""Enter data"");
+        int x=s.nextInt();
+        Node newnode=new Node(x);
+        newnode.next=null;
+        if(front==null&&rear==null)
+        {
+            front=rear=newnode;
+        }
+        else
+        {
+            rear.next=newnode;
+            rear=newnode;
+        }
+        
+    }
+    static void dequeue(){
+       Node temp=front;
+       if(front==null&&rear==null)
+       {
+            System.out.println(""list empty!"");
+       }
+       else
+       {
+           System.out.println(""Popped element is ""+temp.data);
+           front=front.next;
+           
+       }
+        
+    }
+    static void peek()
+    {
+       if(front==null&&rear==null)
+       {
+            System.out.println(""list empty!"");
+       }
+       else{
+           System.out.println(""Top element of list is "" +front.data);
+       }
+    }
+    static void display(){
+        Node temp=front;
+        if(front==null&&rear==null)
+        {
+            System.out.println(""list empty!"");
+        }
+        else
+        {
+            System.out.println(""Queue elements are : "");
+            while(temp!=null)
+            {
+                System.out.print(temp.data+"" "");
+                temp=temp.next;
+            }
+            System.out.print(""\n"");
+            
+        }
+    }
+	public static void main(String[] args) {
+	   
+	    char c;
+	    do{
+	         System.out.println(""Enter 1 for enqueue operation\nEnter 2 for dequeue operation\nEnter 3 for peek operation(i.e to see top most element)\nEnter 4 to display queue"");
+	    int choice=s.nextInt();
+	    switch(choice){
+	        case 1:
+	           enqueue();
+	            break;
+	        case 2:
+	            dequeue();
+	            break;
+	        case 3:
+	            peek();
+	            break;
+	        case 4:
+	            display();
+	            break;
+	      
+	    }
+	    System.out.println(""press y to continue and n to exit"");
+	     c = s.next().charAt(0); 
+	    }while(c!='n');
+	    
+	    
+	}
+}
+",0
+"#include <iostream>
+#include <algorithm>
+#include <string>
+#include <vector>
+#include <stack>
+#include <queue>
+#include <set>
+#include <bitset>
+#include <map>
+#include <tuple>
+#include <unordered_set>
+#include <unordered_map>
+#include <list>
+#include <numeric>
+#include <utility>
+#include <iterator>
+#include <cstdio>
+#include <cmath>
+#include <cstdlib>
+#include <cstring>
+#include <climits>
+#include <ctime>
+#include <cassert>
+#include <random>
+#include <cstring>
+#define mod 1000000007
+
+#define rep(i,n) for(int i=0;i<int(n);i++)
+#define all(x) (x).begin(),x.end()
+#define pb push_back
+
+using namespace std;
+
+using ll = long long;
+
+int dx[4]={1,0,-1,0};
+int dy[4]={0,1,0,-1};
+int ddx[8]={-1,-1,0,1,1,1,0,-1};
+int ddy[8]={0,1,1,1,0,-1,-1,-1};
+bool debug=false;
+
+/*---------------------------------------------------*/
+
+const int N_MAX = 100005;
+const int M_MAX = 200005;
+
+struct Edge {
+ int to;
+ ll cost;
+};
+
+int N, M;
+vector<int> L(M_MAX), R(M_MAX);
+vector<ll> D(M_MAX);
+vector<Edge> E[M_MAX];
+vector<ll> pos(N_MAX, LLONG_MAX);
+vector<bool> confirm(N_MAX, false);
+
+bool dfs(int curr){
+ if(confirm[curr]) return true;
+ confirm[curr] = true;
+ for(auto e : E[curr]){
+  if(pos[e.to] == LLONG_MAX){
+   pos[e.to] = pos[curr] + e.cost;
+   if(!dfs(e.to)) return false;
+  } else {
+   if(pos[e.to] != pos[curr] + e.cost) return false;
+  }
+ }
+ return true;
+}
+
+int main(){
+ cin >> N >> M;
+ // if(M == 0){cout << ""Yes"" << endl; return 0;}
+ int start = N_MAX;
+ for(int i = 0; i < M; i++){
+  cin >> L[i] >> R[i] >> D[i];
+  E[L[i]].push_back({R[i], D[i]});
+  E[R[i]].push_back({L[i], -D[i]});
+  start = min({start, R[i], L[i]});
+ }
+
+ pos[start] = 0;
+ bool ok = true;
+ for(int i = start; i < N + 1; i++){
+  if(!confirm[i] && !dfs(i)){
+   ok = false;
+   break;
+  }
+ }
+ 
+ // for(int i = 0; i < N + 1; i++) cerr << i << "": "" << pos[i] << endl;
+ 
+ cout << (ok ? ""Yes"" : ""No"") << endl;
+ return 0;
+}",0
+"/**
+ *
+ * \file
+ *
+ * \brief Data structure for finding the lowest common ancestor
+ * of two vertices in a rooted tree using binary lifting.
+ *
+ * \details
+ * Algorithm: https://cp-algorithms.com/graph/lca_binary_lifting.html
+ *
+ * Complexity:
+ *   - Precomputation: \f$O(N \log N)\f$ where \f$N\f$ is the number of vertices
+ * in the tree
+ *   - Query: \f$O(\log N)\f$
+ *   - Space: \f$O(N \log N)\f$
+ *
+ * Example:
+ * <br/>  Tree:
+ * <pre>
+ *             _  3  _
+ *          /     |     \
+ *        1       6       4
+ *      / |     /   \       \
+ *    7   5   2       8       0
+ *            |
+ *            9
+ * </pre>
+ *
+ * <br/>  lowest_common_ancestor(7, 4) = 3
+ * <br/>  lowest_common_ancestor(9, 6) = 6
+ * <br/>  lowest_common_ancestor(0, 0) = 0
+ * <br/>  lowest_common_ancestor(8, 2) = 6
+ *
+ *   The query is symmetrical, therefore
+ *     lowest_common_ancestor(x, y) = lowest_common_ancestor(y, x)
+ */
+
+#include <cassert>
+#include <iostream>
+#include <queue>
+#include <utility>
+#include <vector>
+
+/**
+ * \namespace graph
+ * \brief Graph algorithms
+ */
+namespace graph {
+/**
+ * Class for representing a graph as an adjacency list.
+ * Its vertices are indexed 0, 1, ..., N - 1.
+ */
+class Graph {
+ public:
+    /**
+     * \brief Populate the adjacency list for each vertex in the graph.
+     * Assumes that evey edge is a pair of valid vertex indices.
+     *
+     * @param N number of vertices in the graph
+     * @param undirected_edges list of graph's undirected edges
+     */
+    Graph(size_t N, const std::vector<std::pair<int, int> > &undirected_edges) {
+        neighbors.resize(N);
+        for (auto &edge : undirected_edges) {
+            neighbors[edge.first].push_back(edge.second);
+            neighbors[edge.second].push_back(edge.first);
+        }
+    }
+
+    /**
+     * Function to get the number of vertices in the graph
+     * @return the number of vertices in the graph.
+     */
+    int number_of_vertices() const { return neighbors.size(); }
+
+    /** \brief for each vertex it stores a list indicies of its neighbors */
+    std::vector<std::vector<int> > neighbors;
+};
+
+/**
+ * Representation of a rooted tree. For every vertex its parent is
+ * precalculated.
+ */
+class RootedTree : public Graph {
+ public:
+    /**
+     * \brief Constructs the tree by calculating parent for every vertex.
+     * Assumes a valid description of a tree is provided.
+     *
+     * @param undirected_edges list of graph's undirected edges
+     * @param root_ index of the root vertex
+     */
+    RootedTree(const std::vector<std::pair<int, int> > &undirected_edges,
+               int root_)
+        : Graph(undirected_edges.size() + 1, undirected_edges), root(root_) {
+        populate_parents();
+    }
+
+    /**
+     * \brief Stores parent of every vertex and for root its own index.
+     * The root is technically not its own parent, but it's very practical
+     * for the lowest common ancestor algorithm.
+     */
+    std::vector<int> parent;
+    /** \brief Stores the distance from the root. */
+    std::vector<int> level;
+    /** \brief Index of the root vertex. */
+    int root;
+
+ protected:
+    /**
+     * \brief Calculate the parents for all the vertices in the tree.
+     * Implements the breadth first search algorithm starting from the root
+     * vertex searching the entire tree and labeling parents for all vertices.
+     * @returns none
+     */
+    void populate_parents() {
+        // Initialize the vector with -1 which indicates the vertex
+        // wasn't yet visited.
+        parent = std::vector<int>(number_of_vertices(), -1);
+        level = std::vector<int>(number_of_vertices());
+        parent[root] = root;
+        level[root] = 0;
+        std::queue<int> queue_of_vertices;
+        queue_of_vertices.push(root);
+        while (!queue_of_vertices.empty()) {
+            int vertex = queue_of_vertices.front();
+            queue_of_vertices.pop();
+            for (int neighbor : neighbors[vertex]) {
+                // As long as the vertex was not yet visited.
+                if (parent[neighbor] == -1) {
+                    parent[neighbor] = vertex;
+                    level[neighbor] = level[vertex] + 1;
+                    queue_of_vertices.push(neighbor);
+                }
+            }
+        }
+    }
+};
+
+/**
+ * A structure that holds a rooted tree and allow for effecient
+ * queries of the lowest common ancestor of two given vertices in the tree.
+ */
+class LowestCommonAncestor {
+ public:
+    /**
+     * \brief Stores the tree and precomputs ""up lifts"".
+     * @param tree_ rooted tree.
+     */
+    explicit LowestCommonAncestor(const RootedTree &tree_) : tree(tree_) {
+        populate_up();
+    }
+
+    /**
+     * \brief Query the structure to find the lowest common ancestor.
+     * Assumes that the provided numbers are valid indices of vertices.
+     * Iterativelly modifies (""lifts"") u an v until it finnds their lowest
+     * common ancestor.
+     * @param u index of one of the queried vertex
+     * @param v index of the other queried vertex
+     * @return index of the vertex which is the lowet common ancestor of u and v
+     */
+    int lowest_common_ancestor(int u, int v) const {
+        // Ensure u is the deeper (higher level) of the two vertices
+        if (tree.level[v] > tree.level[u]) {
+            std::swap(u, v);
+        }
+
+        // ""Lift"" u to the same level as v.
+        int level_diff = tree.level[u] - tree.level[v];
+        for (int i = 0; (1 << i) <= level_diff; ++i) {
+            if (level_diff & (1 << i)) {
+                u = up[u][i];
+            }
+        }
+        assert(tree.level[u] == tree.level[v]);
+
+        if (u == v) {
+            return u;
+        }
+
+        // ""Lift"" u and v to their 2^i th ancestor if they are different
+        for (int i = static_cast<int>(up[u].size()) - 1; i >= 0; --i) {
+            if (up[u][i] != up[v][i]) {
+                u = up[u][i];
+                v = up[v][i];
+            }
+        }
+
+        // As we regressed u an v such that they cannot further be lifted so
+        // that their ancestor would be different, the only logical
+        // consequence is that their parent is the sought answer.
+        assert(up[u][0] == up[v][0]);
+        return up[u][0];
+    }
+
+    /* \brief reference to the rooted tree this structure allows to query */
+    const RootedTree &tree;
+    /**
+     * \brief for every vertex stores a list of its ancestors by powers of two
+     * For each vertex, the first element of the corresponding list contains
+     * the index of its parent. The i-th element of the list is an index of
+     * the (2^i)-th ancestor of the vertex.
+     */
+    std::vector<std::vector<int> > up;
+
+ protected:
+    /**
+     * Populate the ""up"" structure. See above.
+     */
+    void populate_up() {
+        up.resize(tree.number_of_vertices());
+        for (int vertex = 0; vertex < tree.number_of_vertices(); ++vertex) {
+            up[vertex].push_back(tree.parent[vertex]);
+        }
+        for (int level = 0; (1 << level) < tree.number_of_vertices(); ++level) {
+            for (int vertex = 0; vertex < tree.number_of_vertices(); ++vertex) {
+                // up[vertex][level + 1] = 2^(level + 1) th ancestor of vertex =
+                // = 2^level th ancestor of 2^level th ancestor of vertex =
+                // = 2^level th ancestor of up[vertex][level]
+                up[vertex].push_back(up[up[vertex][level]][level]);
+            }
+        }
+    }
+};
+
+}  // namespace graph
+
+/**
+ * Unit tests
+ * @returns none
+ */
+static void tests() {
+    /**
+     *             _  3  _
+     *          /     |     \
+     *        1       6       4
+     *      / |     /   \       \
+     *    7   5   2       8       0
+     *            |
+     *            9
+     */
+    std::vector<std::pair<int, int> > edges = {
+        {7, 1}, {1, 5}, {1, 3}, {3, 6}, {6, 2}, {2, 9}, {6, 8}, {4, 3}, {0, 4}};
+    graph::RootedTree t(edges, 3);
+    graph::LowestCommonAncestor lca(t);
+    assert(lca.lowest_common_ancestor(7, 4) == 3);
+    assert(lca.lowest_common_ancestor(9, 6) == 6);
+    assert(lca.lowest_common_ancestor(0, 0) == 0);
+    assert(lca.lowest_common_ancestor(8, 2) == 6);
+}
+
+/** Main function */
+int main() {
+    tests();
+    return 0;
+}
+",0
+"// robustness testing comment
+#include <stdio.h>
+
+int main() {
+  int i = 1;
+  while (i <= 5) {
+    printf(""%d\n"", i);
+    i++;
+  }
+  return 0;
+}",1
+"""""""
+Hamming Distance
+
+Calculates the number of differing positions
+between two strings of equal length.
+""""""
+
+def hamming_distance(first_text, second_text):
+    """"""
+    Return the Hamming distance between two strings.
+    """"""
+    if len(first_text) != len(second_text):
+        raise ValueError(
+            ""Strings must have the same length.""
+        )
+
+    distance = 0
+
+    for first_char, second_char in zip(
+        first_text,
+        second_text
+    ):
+        if first_char != second_char:
+            distance += 1
+
+    return distance
+
+
+# Example usage
+if __name__ == ""__main__"":
+    print(hamming_distance(""karolin"", ""kathrin""))",1
+"import Java.util.Scanner;
+
+public class Champ {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    
+    System.out.print(""Entrez la largeur du champ: "");
+    double largeur = scanner.nextDouble();
+    
+    System.out.print(""Entrez la longueur du champ: "");
+    double longueur = scanner.nextDouble();
+    
+    // Calcul du périmètre et de la surface
+    double perimetre = 2 * (largeur + longueur);
+    double surface = largeur * longueur;
+    
+    // Affichage des résultats
+    System.out.println(""Le périmètre du champ est: "" + perimetre);
+    System.out.println(""La surface du champ est: "" + surface);
+    
+    scanner.close();
+  }
+}",1
+"//User function Template for Java
+
+
+class Node
+{
+    int data;
+    Node left, right;
+
+    Node(int item)
+    {
+        data = item;
+        left = right = null;
+    }
+}
+
+
+class Solution {
+    //Function to find the height of a binary tree.
+    int height(Node node) 
+    {
+        // code here
+        if(node==null)
+        {
+            return 0;
+        }
+        
+        int left=height(node.left);
+        int right=height(node.right);
+        
+        int ans=left>right?left+1:right+1;
+        return ans;
+    }
+}",0
+"// =============================================================
+// Dynamic Programming: Longest Increasing Subsequence (LIS)
+// =============================================================
+// Given an array of integers, find the length of the longest
+// strictly increasing subsequence.
+//
+// Example: [10, 9, 2, 5, 3, 7, 101, 18] -> LIS = [2,3,7,18] len 4
+//
+// Approach 1 - Classic DP:
+//   dp[i] = length of LIS ending at index i
+//   dp[i] = max(dp[j] + 1) for all j < i where arr[j] < arr[i]
+//   Time: O(n^2)  |  Space: O(n)
+//
+// Approach 2 - Binary Search (Patience Sorting):
+//   Maintain a ""tails"" array where tails[i] is the smallest tail
+//   element of all increasing subsequences of length i+1.
+//   Time: O(n log n)  |  Space: O(n)
+// =============================================================
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+// -------------------------------------------------------------
+// Approach 1: Classic O(n^2) DP
+// Also records the actual subsequence via a parent array.
+// -------------------------------------------------------------
+int lisDP(const std::vector<int>& arr) {
+    int n = arr.size();
+    if (n == 0) return 0;
+
+    // dp[i] = LIS length ending exactly at index i
+    std::vector<int> dp(n, 1); // Every element alone is a subsequence of length 1
+
+    for (int i = 1; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+            if (arr[j] < arr[i]) {
+                // Extend the subsequence ending at j
+                dp[i] = std::max(dp[i], dp[j] + 1);
+            }
+        }
+    }
+
+    return *std::max_element(dp.begin(), dp.end());
+}
+
+// -------------------------------------------------------------
+// Reconstruct the actual LIS (O(n^2) DP with parent tracking)
+// -------------------------------------------------------------
+std::vector<int> lisReconstruct(const std::vector<int>& arr) {
+    int n = arr.size();
+    std::vector<int> dp(n, 1);
+    std::vector<int> parent(n, -1); // parent[i] = previous index in LIS
+
+    int bestLength = 1;
+    int bestEnd = 0; // Index where the best LIS ends
+
+    for (int i = 1; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+            if (arr[j] < arr[i] && dp[j] + 1 > dp[i]) {
+                dp[i] = dp[j] + 1;
+                parent[i] = j;
+            }
+        }
+        if (dp[i] > bestLength) {
+            bestLength = dp[i];
+            bestEnd = i;
+        }
+    }
+
+    // Trace back through parent array
+    std::vector<int> lis;
+    for (int i = bestEnd; i != -1; i = parent[i]) {
+        lis.push_back(arr[i]);
+    }
+    std::reverse(lis.begin(), lis.end());
+
+    return lis;
+}
+
+// -------------------------------------------------------------
+// Approach 2: O(n log n) — Patience Sorting / Binary Search
+// tails[i] = smallest possible tail of any IS of length i+1
+// -------------------------------------------------------------
+int lisFast(const std::vector<int>& arr) {
+    std::vector<int> tails; // Maintains the ""patience piles""
+
+    for (int value : arr) {
+        // Find the first element in tails >= value (lower_bound for non-strictly increasing)
+        // Use lower_bound for strictly increasing (replaces equal or larger)
+        auto pos = std::lower_bound(tails.begin(), tails.end(), value);
+
+        if (pos == tails.end()) {
+            tails.push_back(value); // Extend the sequence
+        } else {
+            *pos = value; // Replace to keep tails as small as possible
+        }
+    }
+
+    return tails.size(); // Length of tails == length of LIS
+}
+
+// -------------------------------------------------------------
+// Example Usage
+// -------------------------------------------------------------
+int main() {
+    std::vector<int> arr = {10, 9, 2, 5, 3, 7, 101, 18};
+
+    std::cout << ""=== Longest Increasing Subsequence ==="" << std::endl;
+    std::cout << ""Array: "";
+    for (int x : arr) std::cout << x << "" "";
+    std::cout << std::endl;
+
+    std::cout << ""\nLIS Length (O(n^2) DP)     : "" << lisDP(arr) << std::endl;
+    std::cout << ""LIS Length (O(n log n) BS) : "" << lisFast(arr) << std::endl;
+
+    std::vector<int> lis = lisReconstruct(arr);
+    std::cout << ""One actual LIS             : "";
+    for (int x : lis) std::cout << x << "" "";
+    std::cout << std::endl;
+
+    // Another example
+    std::vector<int> arr2 = {0, 1, 0, 3, 2, 3};
+    std::cout << ""\n--- Another Example ---"" << std::endl;
+    std::cout << ""Array: "";
+    for (int x : arr2) std::cout << x << "" "";
+    std::cout << ""\nLIS Length: "" << lisFast(arr2) << std::endl;
+    std::vector<int> lis2 = lisReconstruct(arr2);
+    std::cout << ""One actual LIS: "";
+    for (int x : lis2) std::cout << x << "" "";
+    std::cout << std::endl;
+
+    return 0;
+}
+",1
+"// robustness testing comment
+""""""
+This is a pure Python implementation of the linear search algorithm.
+
+For doctests run following command:
+python3 -m doctest -v linear_search.py
+
+For manual testing run:
+python3 linear_search.py
+""""""
+
+
+def linear_search(sequence: list, target: int) -> int:
+    """"""A pure Python implementation of a linear search algorithm
+
+    :param sequence: a collection with comparable items (sorting is not required for
+        linear search)
+    :param target: item value to search
+    :return: index of found item or -1 if item is not found
+
+    Examples:
+    >>> linear_search([0, 5, 7, 10, 15], 0)
+    0
+    >>> linear_search([0, 5, 7, 10, 15], 15)
+    4
+    >>> linear_search([0, 5, 7, 10, 15], 5)
+    1
+    >>> linear_search([0, 5, 7, 10, 15], 6)
+    -1
+    """"""
+    for index, item in enumerate(sequence):
+        if item == target:
+            return index
+    return -1
+
+
+def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
+    """"""
+    A pure Python implementation of a recursive linear search algorithm
+
+    :param sequence: a collection with comparable items (as sorted items not required
+        in Linear Search)
+    :param low: Lower bound of the array
+    :param high: Higher bound of the array
+    :param target: The element to be found
+    :return: Index of the key or -1 if key not found
+
+    Examples:
+    >>> rec_linear_search([0, 30, 500, 100, 700], 0, 4, 0)
+    0
+    >>> rec_linear_search([0, 30, 500, 100, 700], 0, 4, 700)
+    4
+    >>> rec_linear_search([0, 30, 500, 100, 700], 0, 4, 30)
+    1
+    >>> rec_linear_search([0, 30, 500, 100, 700], 0, 4, -6)
+    -1
+    """"""
+    if not (0 <= high < len(sequence) and 0 <= low < len(sequence)):
+        raise Exception(""Invalid upper or lower bound!"")
+    if high < low:
+        return -1
+    if sequence[low] == target:
+        return low
+    if sequence[high] == target:
+        return high
+    return rec_linear_search(sequence, low + 1, high - 1, target)
+
+
+if __name__ == ""__main__"":
+    user_input = input(""Enter numbers separated by comma:\n"").strip()
+    sequence = [int(item.strip()) for item in user_input.split("","")]
+
+    target = int(input(""Enter a single number to be found in the list:\n"").strip())
+    result = linear_search(sequence, target)
+    if result != -1:
+        print(f""linear_search({sequence}, {target}) = {result}"")
+    else:
+        print(f""{target} was not found in {sequence}"")
+",0
+"public class FloatingPointPrecision {
+  public static void main(String[] args) {
+    double a = 0.1;
+    double b = 0.2;
+    double sum = a + b;
+
+    System.out.printf(""Sum: %.20f\n"", sum);
+    System.out.println(""Is the sum equal to 0.3? "" + (sum == 0.3)); // May return false
+  }
+}",1
+"// robustness testing comment
+// Source : https://oj.leetcode.com/problems/minimum-path-sum/
+// Author : Hao Chen
+// Date   : 2014-06-21
+
+/***************************************************************************************************** 
+ *
+ * Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right 
+ * which minimizes the sum of all numbers along its path.
+ * 
+ * Note: You can only move either down or right at any point in time.
+ * 
+ * Example:
+ * 
+ * Input:
+ * [
+ *   [1,3,1],
+ *   [1,5,1],
+ *   [4,2,1]
+ * ]
+ * Output: 7
+ * Explanation: Because the path 1&rarr;3&rarr;1&rarr;1&rarr;1 minimizes the sum.
+ * 
+ ******************************************************************************************************/
+
+#include <limits.h>
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int minPathSum(vector<vector<int>>& grid) {
+    for (int i=0; i<grid.size(); i++) {
+        for (int j=0; j<grid[0].size(); j++) {
+            if (i==0 && j==0) continue;
+            else if (i==0) grid[0][j] += grid[0][j-1];
+            else if (j==0) grid[i][0] += grid[i-1][j];
+            else grid[i][j] += min( grid[i-1][j], grid[i][j-1]);
+        }
+    }
+    return grid[grid.size()-1][grid[0].size()-1];
+}
+
+int main()
+{
+    int a[6][2]={{7,2},{6,6},{8,6},{8,7},{5,0},{6,0}};
+    vector< vector<int> > grid;
+    for(int i=0; i<6; i++){
+        vector<int> v;
+        for(int j=0; j<2; j++){
+            v.push_back(a[i][j]);
+        }
+        grid.push_back(v);
+    }
+
+    cout << ""minPathSum="" << minPathSum(grid) << endl;
+
+    return 0;
+}
+
+",0
+"n,k,c = map(int,input().split())
+s = list(input())
+
+L = []
+R = []
+
+i = -1
+j = n 
+
+for ki in range(k):
+ while i < n:
+  i += 1
+  if s[i] == 'o':      
+   L += [i]
+   i += c
+   break
+
+for ki in range(k):   
+ while 0 <= j:
+  j -= 1
+  if s[j] == 'o':     
+   R += [j]
+   j -= c
+   break
+   
+for i in range(k):
+ if L[i] == R[-i-1] :
+  print(L[i]+1)",0
+"class Car:
+  def __init__(self, make, model, year, license_plate):
+    self.make = make
+    self.model = model
+    self.year = year
+    self.license_plate = license_plate
+
+  def display_info(self):
+    print(f""{self.year} {self.make} {self.model} | License Plate: {self.license_plate}"")
+
+class CarInventory:
+  def __init__(self):
+    self.cars = []
+
+  def add_car(self, car):
+    self.cars.append(car)
+
+  def bulk_add_cars(self, new_cars):
+    self.cars.extend(new_cars)
+
+  def display_cars(self):
+    for car in self.cars:
+      car.display_info()
+
+  def sort_cars_by_year(self):
+    self.cars.sort(key=lambda car: car.year)
+
+# Example usage
+inventory = CarInventory()
+inventory.add_car(Car(""Toyota"", ""Highlander"", 2020, ""ABC123""))
+
+# Bulk adding cars
+new_cars = [
+  Car(""Nissan"", ""Rogue"", 2021, ""XYZ456""),
+  Car(""Honda"", ""Civic"", 2019, ""LMN789"")
+]
+inventory.bulk_add_cars(new_cars)
+
+print(""All Cars:"")
+inventory.display_cars()
+
+print(""\nSorting cars by year:"")
+inventory.sort_cars_by_year()
+inventory.display_cars()",1
+"#include <iostream>
+#include <vector>
+#include <queue>
+#include <limits>
+
+using namespace std;
+const int INF = 1e9;
+typedef pair<int, int> EdgePair;
+
+class Graph {
+    int V;
+    vector<vector<EdgePair>> adj;
+
+    // Helper: Dijkstra's Algorithm
+    vector<int> dijkstra(int src, const vector<int>& h) {
+        priority_queue<EdgePair, vector<EdgePair>, greater<EdgePair>> pq;
+        vector<int> dist(V + 1, INF);
+        pq.push({0, src});
+        dist[src] = 0;
+
+        while (!pq.empty()) {
+            int d = pq.top().first;
+            int u = pq.top().second;
+            pq.pop();
+
+            if (d > dist[u]) continue;
+
+            for (auto& edge : adj[u]) {
+                int v = edge.second;
+                int weight = edge.first + h[u] - h[v]; // Reweighting
+                if (dist[u] + weight < dist[v]) {
+                    dist[v] = dist[u] + weight;
+                    pq.push({dist[v], v});
+                }
+            }
+        }
+        // Correct distances by removing heuristic modifications
+        for (int i = 0; i < V; ++i) {
+            if (dist[i] != INF) dist[i] = dist[i] - h[src] + h[i];
+        }
+        return dist;
+    }
+
+public:
+    Graph(int V) : V(V), adj(V + 1) {} // Extra vertex for Bellman-Ford
+
+    void addEdge(int u, int v, int w) {
+        adj[u].push_back({w, v});
+    }
+
+    void johnsonsAlgorithm() {
+        // Step 1: Add phantom node V connected to all with weight 0
+        for (int i = 0; i < V; ++i) adj[V].push_back({0, i});
+
+        // Step 2: Run Bellman-Ford from the phantom node
+        vector<int> h(V + 1, INF);
+        h[V] = 0;
+        for (int i = 0; i < V; ++i) { // Relax V times
+            for (int u = 0; u <= V; ++u) {
+                for (auto& edge : adj[u]) {
+                    int v = edge.second;
+                    int weight = edge.first;
+                    if (h[u] != INF && h[u] + weight < h[v]) {
+                        h[v] = h[u] + weight;
+                    }
+                }
+            }
+        }
+        // Simplified check for negative cycle omitted for brevity but standard in BF
+
+        // Remove phantom node edges (optional conceptually, practically we just ignore it)
+        
+        // Step 3: Run Dijkstra for every node
+        cout << ""Johnson's All-Pairs Shortest Paths:\n"";
+        for (int u = 0; u < V; ++u) {
+            vector<int> dist = dijkstra(u, h);
+            cout << ""From "" << u << "": "";
+            for (int v = 0; v < V; ++v) {
+                if (dist[v] == INF) cout << ""INF "";
+                else cout << dist[v] << "" "";
+            }
+            cout << endl;
+        }
+    }
+};
+
+int main() {
+    Graph g(4);
+    g.addEdge(0, 1, -5);
+    g.addEdge(0, 2, 2);
+    g.addEdge(0, 3, 3);
+    g.addEdge(1, 2, 4);
+    g.addEdge(2, 3, 1);
+
+    g.johnsonsAlgorithm();
+    return 0;
+}",1
+"n_list = list(input())
+
+for i in range(len(n_list)):
+  if n_list[i] == '1':
+    n_list[i] = '9'
+  elif n_list[i] == '9':
+    n_list[i] = '1'
+
+print(''.join(n_list))",0
+"import sys
+input = lambda: sys.stdin.readline().rstrip()
+
+def main():
+  n, m = map(int, input().split())
+  L, R = 1, n
+  for _ in range(m):
+    l, m = map(int, input().split())
+    if l > L: L = l
+    if m < R: R = m
+  print(max(0, R-L+1))
+  
+if __name__ == '__main__':
+  main()",0
+"// robustness testing comment
+#include <stdio.h>
+
+int main(){
+ int a,b,rem,tmp;
+ scanf(""%d %d"",&a,&b);
+ if(a<b){
+  tmp = a;
+  a = b;
+  b = tmp;
+ }
+ while(rem!=0){
+  rem = a%b;
+  a = b;
+  b = rem;
+ }
+ printf(""%d\n"",a);
+
+ return 0;
+}
+",0
+"import matplotlib.pyplot as plt
+
+def visualize_amicable_numbers(amicable_pairs):
+  x = [a for a, b in amicable_pairs]
+  y = [b for a, b in amicable_pairs]
+  
+  plt.scatter(x, y)
+  plt.title('Amicable Numbers')
+  plt.xlabel('Number A')
+  plt.ylabel('Number B')
+  plt.grid(True)
+  plt.show()
+
+if __name__ == ""__main__"":
+  limit = 10000
+  amicable_pairs = find_amicable_numbers(limit)
+  visualize_amicable_numbers(amicable_pairs)",1
+"#include <stdio.h>
+#include <math.h>
+
+void rotate_around_z(double *vector, double angle) {
+  double cosAngle = cos(angle);
+  double sinAngle = sin(angle);
+  double x = vector[0];
+  double y = vector[1];
+  vector[0] = x * cosAngle - y * sinAngle;
+  vector[1] = x * sinAngle + y * cosAngle;
+}
+
+void translate(double *vector, double *translation) {
+  vector[0] += translation[0];
+  vector[1] += translation[1];
+  vector[2] += translation[2];
+}
+
+int main() {
+  double vector[3] = {1.0, 2.0, 3.0};
+  double angle = M_PI / 2; // 90 degrees
+
+  // Rotating
+  rotate_around_z(vector, angle);
+  printf(""Rotated vector: [%.2f, %.2f, %.2f]\n"", vector[0], vector[1], vector[2]);
+
+  // Translating
+  double translation[3] = {1.0, 1.0, 1.0};
+  translate(vector, translation);
+  printf(""Translated vector: [%.2f, %.2f, %.2f]\n"", vector[0], vector[1], vector[2]);
+
+  return 0;
+}",1
+"// ============================================================
+// 01 - Singly Linked List
+// Each node holds data and a reference to the next node.
+// The list only travels in one direction (forward).
+// ============================================================
+
+public class SinglyLinkedList {
+
+    // --- Node definition ---
+    // Each node stores a value and points to the next node.
+    static class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    // --- Linked List definition ---
+    static class LinkedList {
+        Node head; // Points to the first node in the list
+
+        // Insert a new node at the end of the list
+        void insert(int data) {
+            Node newNode = new Node(data);
+
+            // If the list is empty, the new node becomes the head
+            if (head == null) {
+                head = newNode;
+                return;
+            }
+
+            // Traverse to the last node
+            Node current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+
+            // Attach the new node at the end
+            current.next = newNode;
+        }
+
+        // Print all elements from head to the last node
+        void display() {
+            Node current = head;
+            System.out.print(""List: "");
+            while (current != null) {
+                System.out.print(current.data + "" -> "");
+                current = current.next;
+            }
+            System.out.println(""null"");
+        }
+    }
+
+    // --- Example Usage ---
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+        list.insert(40);
+
+        list.display();
+        // Output: List: 10 -> 20 -> 30 -> 40 -> null
+    }
+}
+",1

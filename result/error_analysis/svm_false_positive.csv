@@ -1,0 +1,253 @@
+Sample_Code,Label,Prediction,Probability_AI,Correct
+"public class BinarySearchTree {
+
+    // Root of BST
+    BstNode root;
+
+    BinarySearchTree() {
+        root = null;
+    }
+
+    void Insert(int data) {
+        root = Insert(root, data);
+    }
+
+    BstNode Insert(BstNode root, int data) {
+
+        if (root == null) {
+            root = new BstNode(data);
+        } else if (data < root.data)
+            root.Left = Insert(root.Left, data);
+        else if (data > root.data)
+            root.Right = Insert(root.Right, data);
+
+        return root;
+    }
+
+    void InOrder() {
+        InOrder(root);
+    }
+
+    void InOrder(BstNode root) {
+        if (root != null) {
+            InOrder(root.Left);
+            System.out.print(root.data + "" "");
+            InOrder(root.Right);
+        }
+    }
+
+    void PreOrder() {
+        PreOrder(root);
+    }
+
+    void PreOrder(BstNode root) {
+        if (root == null)
+            return;
+        System.out.print(root.data + "" "");
+        PreOrder(root.Left);
+        PreOrder(root.Right);
+    }
+
+    void PostOrder() {
+        PostOrder(root);
+    }
+
+    void PostOrder(BstNode root) {
+        if (root == null)
+            return;
+        PostOrder(root.Left);
+        PostOrder(root.Right);
+        System.out.print(root.data + "" "");
+    }
+
+    int Height() {
+        return Height(root);
+    }
+
+    int Height(BstNode root) {
+        if (root == null)
+            return -1;
+        return Math.max(Height(root.Left), Height(root.Right)) + 1;
+    }
+
+    boolean Search(int data) {
+        return Search(root, data);
+    }
+
+    boolean Search(BstNode root, int data) {
+        boolean result;
+        if (root == null) {
+            result = false;
+        } else if (root.data == data) {
+            result = true;
+        } else if (data <= root.data) {
+            result = Search(root.Left, data);
+        } else {
+            result = Search(root.Right, data);
+        }
+        return result;
+    }
+
+    void Delete(int data) {
+        Delete(root, data);
+    }
+
+    BstNode Delete(BstNode root, int data) {
+        if (root == null)
+            return root;
+        else if (data < root.data)
+            root.Left = Delete(root.Left, data);
+        else if (data > root.data)
+            root.Right = Delete(root.Right, data);
+        else // found
+        {
+            // Case 1: No child
+            if (root.Left == null && root.Right == null) {
+                // delete root;
+                root = null;
+            }
+            // Case 2: One child
+            else if (root.Left == null) {
+                root = root.Right;
+            } else if (root.Right == null) {
+                root = root.Left;
+            }
+            // Case 3: 2 children
+            else {
+                BstNode temp = FindMin(root.Right);
+                root.data = temp.data;
+                root.Right = Delete(root.Right, temp.data);
+            }
+        }
+        return root;
+    }
+
+    BstNode FindMin(BstNode root) {
+        while (root.Left != null)
+            root = root.Left;
+        return root;
+    }
+}",0,1,0.8725381772674019,False
+"# Python program for implementation of Quick Sort
+
+# divide function
+def partition(arr, low, high):
+    i = (low-1)
+    pivot = arr[high]  # pivot element
+    for j in range(low, high):
+        # If current element is smaller
+        if arr[j] <= pivot:
+            # increment
+            i = i+1
+            arr[i], arr[j] = arr[j], arr[i]
+    arr[i+1], arr[high] = arr[high], arr[i+1]
+    return i+1
+
+
+# quick sort function
+def quick_sort(arr, low, high):
+    if low < high:
+        # index
+        pi = partition(arr, low, high)
+        # sort the partitions
+        quick_sort(arr, low, pi-1)
+        quick_sort(arr, pi+1, high)
+",0,1,0.9721517870300413,False
+"    //****************************************Linked List Class*******************************
+
+   public class LinkedList<T> {
+
+Node<T> head;
+T data;
+
+
+public LinkedList(){
+   head = null;
+   }
+
+
+
+
+public void add(T data){
+
+    Node<T> newNode = new Node<T> (data);
+    newNode.setLink(head);
+    head = newNode;
+}
+
+
+  //had problems printing out the data in the last node
+
+ public void traverse(){
+    Node<T> pointer;
+    pointer = head;
+
+while (pointer.getLink()!=null){
+        System.out.println(pointer.getData());
+        pointer = pointer.setLink(pointer.getLink());
+}
+
+//Fixed problems For last node that doesnt get printed out
+System.out.println(pointer.getData());
+
+}
+",0,1,0.5539656315937725,False
+"// Source : https://oj.leetcode.com/problems/minimum-path-sum/
+// Author : Hao Chen
+// Date   : 2014-06-21
+
+/***************************************************************************************************** 
+ *
+ * Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right 
+ * which minimizes the sum of all numbers along its path.
+ * 
+ * Note: You can only move either down or right at any point in time.
+ * 
+ * Example:
+ * 
+ * Input:
+ * [
+ *   [1,3,1],
+ *   [1,5,1],
+ *   [4,2,1]
+ * ]
+ * Output: 7
+ * Explanation: Because the path 1&rarr;3&rarr;1&rarr;1&rarr;1 minimizes the sum.
+ * 
+ ******************************************************************************************************/
+
+#include <limits.h>
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int minPathSum(vector<vector<int>>& grid) {
+    for (int i=0; i<grid.size(); i++) {
+        for (int j=0; j<grid[0].size(); j++) {
+            if (i==0 && j==0) continue;
+            else if (i==0) grid[0][j] += grid[0][j-1];
+            else if (j==0) grid[i][0] += grid[i-1][j];
+            else grid[i][j] += min( grid[i-1][j], grid[i][j-1]);
+        }
+    }
+    return grid[grid.size()-1][grid[0].size()-1];
+}
+
+int main()
+{
+    int a[6][2]={{7,2},{6,6},{8,6},{8,7},{5,0},{6,0}};
+    vector< vector<int> > grid;
+    for(int i=0; i<6; i++){
+        vector<int> v;
+        for(int j=0; j<2; j++){
+            v.push_back(a[i][j]);
+        }
+        grid.push_back(v);
+    }
+
+    cout << ""minPathSum="" << minPathSum(grid) << endl;
+
+    return 0;
+}
+
+",0,1,0.9401319897963926,False

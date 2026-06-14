@@ -1,0 +1,1 @@
+public class BalancedParentheses{static boolean check(String s){char[]st=new char[s.length()];int t=-1;for(char c:s.toCharArray()){if(c=='(')st[++t]=c;else if(c==')'){if(t==-1)return false;t--;}}return t==-1;}public static void main(String[]a){System.out.println(check("(()())"));}}

@@ -1,0 +1,2 @@
+Model,Accuracy,Precision,Recall,F1,AUC,Training_Time,Inference_Time,Parameters
+SVM,0.92,0.92,0.92,0.92,0.9688,2.4743096828460693,0.08161735534667969,4900

@@ -1,0 +1,2 @@
+Model,Accuracy,Precision,Recall,F1,AUC,Training_Time,Inference_Time,Parameters
+GraphCodeBERT,0.98,1.0,0.96,0.9795918367346939,0.9929,584.9564206600189,3.4535775184631348,124647170

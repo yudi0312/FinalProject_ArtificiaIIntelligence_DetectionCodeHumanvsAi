@@ -1,0 +1,140 @@
+Sample_Code,Label,Prediction,Probability_AI,Correct
+"#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// Structure to represent an edge
+struct Edge {
+    int src, dest, weight;
+};
+
+// Disjoint Set Union (Union-Find) class
+class DSU {
+    vector<int> parent, rank;
+public:
+    DSU(int n) : parent(n), rank(n, 0) {
+        for (int i = 0; i < n; i++) parent[i] = i;
+    }
+
+    int find(int i) {
+        if (parent[i] == i) return i;
+        return parent[i] = find(parent[i]); // Path compression
+    }
+
+    void unite(int i, int j) {
+        int rootI = find(i);
+        int rootJ = find(j);
+        if (rootI != rootJ) {
+            if (rank[rootI] < rank[rootJ]) parent[rootI] = rootJ;
+            else if (rank[rootI] > rank[rootJ]) parent[rootJ] = rootI;
+            else {
+                parent[rootJ] = rootI;
+                rank[rootI]++;
+            }
+        }
+    }
+};
+
+// Custom comparator to sort edges by weight
+bool compareEdges(Edge e1, Edge e2) {
+    return e1.weight < e2.weight;
+}
+
+void kruskalMST(vector<Edge>& edges, int V) {
+    sort(edges.begin(), edges.end(), compareEdges);
+    DSU dsu(V);
+    int totalCost = 0;
+
+    cout << ""Kruskal's Minimum Spanning Tree Edges:\n"";
+    for (auto& edge : edges) {
+        // If including this edge doesn't cause a cycle
+        if (dsu.find(edge.src) != dsu.find(edge.dest)) {
+            dsu.unite(edge.src, edge.dest);
+            totalCost += edge.weight;
+            cout << edge.src << "" - "" << edge.dest << "" (Weight: "" << edge.weight << "")\n"";
+        }
+    }
+    cout << ""Total Cost: "" << totalCost << endl;
+}
+
+int main() {
+    int V = 4;
+    vector<Edge> edges = {
+        {0, 1, 10}, {0, 2, 6}, {0, 3, 5},
+        {1, 3, 15}, {2, 3, 4}
+    };
+
+    kruskalMST(edges, V);
+    return 0;
+}",1,0,0.23523230417395427,False
+"import Java.util.concurrent.ConcurrentLinkedDeque;
+
+public class ConcurrentStack<T> {
+  private final ConcurrentLinkedDeque<T> deque = new ConcurrentLinkedDeque<>();
+
+  public void push(T item) {
+    deque.push(item);
+  }
+
+  public T pop() {
+    T item = deque.poll();
+    if (item == null) {
+      throw new IllegalStateException(""Stack underflow"");
+    }
+    return item;
+  }
+
+  public T peek() {
+    T item = deque.peek();
+    if (item == null) {
+      throw new IllegalStateException(""Stack is empty"");
+    }
+    return item;
+  }
+
+  public boolean isEmpty() {
+    return deque.isEmpty();
+  }
+
+  public int size() {
+    return deque.size();
+  }
+
+  public static void main(String[] args) {
+    ConcurrentStack<Integer> stack = new ConcurrentStack<>();
+
+    // Push elements
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+
+    // Peek at the top element
+    System.out.println(""Top element: "" + stack.peek());
+
+    // Pop and print elements
+    while (!stack.isEmpty()) {
+      System.out.println(""Popped element: "" + stack.pop());
+    }
+  }
+}",1,0,0.09090004688685151,False
+"public class MaxNumber {
+  public static void main(String[] args) {
+    int max = 0;
+    for (int i = 0; i <= 999999; i++) {
+      if (i > max) max = i;
+    }
+    System.out.println(""Max: "" + max);
+  }
+}",1,0,0.364447441572597,False
+"#include <stdio.h>
+
+int main() {
+  int i = 1;
+  while (i <= 5) {
+    printf(""%d\n"", i);
+    i++;
+  }
+  return 0;
+}",1,0,0.007788485201026571,False

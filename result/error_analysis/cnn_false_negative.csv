@@ -1,0 +1,159 @@
+Sample_Code,Label,Prediction,Probability_AI,Correct
+"// =============================================================
+// Dynamic Programming: Unique Paths
+// =============================================================
+// A robot on an m x n grid starts at the top-left (0,0) and
+// must reach the bottom-right (m-1, n-1). It can only move
+// right or down. Count the number of distinct paths.
+//
+// Subproblem: dp[i][j] = number of paths to reach cell (i, j)
+//
+// Recurrence:
+//   dp[0][j] = 1  (only one way along top row: all rights)
+//   dp[i][0] = 1  (only one way along left column: all downs)
+//   dp[i][j] = dp[i-1][j] + dp[i][j-1]
+//
+// Mathematical shortcut: C(m+n-2, m-1)  (combinatorics)
+//
+// Extension: Unique Paths II — grid contains obstacles ('1' blocks)
+//
+// Time:  O(m * n)  |  Space: O(m * n), reducible to O(n)
+// =============================================================
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+// -------------------------------------------------------------
+// Part 1: Basic unique paths (no obstacles)
+// -------------------------------------------------------------
+long long uniquePaths(int m, int n) {
+    // dp[i][j] = distinct paths to reach (i, j)
+    std::vector<std::vector<long long>> dp(m, std::vector<long long>(n, 1));
+
+    // First row and column already initialised to 1 (single path each)
+    for (int i = 1; i < m; i++) {
+        for (int j = 1; j < n; j++) {
+            dp[i][j] = dp[i - 1][j]  // From above
+                     + dp[i][j - 1]; // From left
+        }
+    }
+
+    return dp[m - 1][n - 1];
+}
+
+// -------------------------------------------------------------
+// Space-Optimised: O(n)
+// Only need the current and previous row.
+// -------------------------------------------------------------
+long long uniquePathsOptimised(int m, int n) {
+    std::vector<long long> dp(n, 1); // One path along the top row
+
+    for (int i = 1; i < m; i++) {
+        for (int j = 1; j < n; j++) {
+            // dp[j] is from the previous row (from above)
+            // dp[j-1] is the current row updated so far (from left)
+            dp[j] += dp[j - 1];
+        }
+    }
+
+    return dp[n - 1];
+}
+
+// -------------------------------------------------------------
+// Mathematical shortcut: C(m+n-2, m-1)
+// Total moves = (m-1) downs + (n-1) rights = m+n-2 total.
+// Choose which m-1 of them are ""down"" moves.
+// -------------------------------------------------------------
+long long uniquePathsMath(int m, int n) {
+    long long numerator   = 1;
+    long long denominator = 1;
+    int total = m + n - 2;
+    int choose = std::min(m - 1, n - 1); // Smaller for fewer multiplications
+
+    for (int i = 0; i < choose; i++) {
+        numerator   *= (total - i);
+        denominator *= (i + 1);
+    }
+
+    return numerator / denominator;
+}
+
+// -------------------------------------------------------------
+// Part 2: Unique Paths II — grid has obstacles
+// obstacle[i][j] = 1 means blocked, 0 means open.
+// -------------------------------------------------------------
+long long uniquePathsWithObstacles(const std::vector<std::vector<int>>& obstacleGrid) {
+    int m = obstacleGrid.size();
+    int n = obstacleGrid[0].size();
+
+    // Start or end blocked — impossible
+    if (obstacleGrid[0][0] == 1 || obstacleGrid[m - 1][n - 1] == 1) return 0;
+
+    std::vector<std::vector<long long>> dp(m, std::vector<long long>(n, 0));
+    dp[0][0] = 1;
+
+    // First column: blocked if any cell above is blocked
+    for (int i = 1; i < m; i++) {
+        dp[i][0] = (obstacleGrid[i][0] == 0) ? dp[i - 1][0] : 0;
+    }
+
+    // First row: blocked if any cell to the left is blocked
+    for (int j = 1; j < n; j++) {
+        dp[0][j] = (obstacleGrid[0][j] == 0) ? dp[0][j - 1] : 0;
+    }
+
+    for (int i = 1; i < m; i++) {
+        for (int j = 1; j < n; j++) {
+            if (obstacleGrid[i][j] == 1) {
+                dp[i][j] = 0; // Blocked cell
+            } else {
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+            }
+        }
+    }
+
+    return dp[m - 1][n - 1];
+}
+
+// -------------------------------------------------------------
+// Example Usage
+// -------------------------------------------------------------
+int main() {
+    std::cout << ""=== Unique Paths ==="" << std::endl;
+
+    // Basic unique paths
+    std::cout << ""\n-- Basic Unique Paths --"" << std::endl;
+    for (int m = 1; m <= 5; m++) {
+        for (int n = 1; n <= 5; n++) {
+            std::cout << ""("" << m << ""x"" << n << "")=""
+                      << uniquePaths(m, n) << ""  "";
+        }
+        std::cout << std::endl;
+    }
+
+    // Compare methods
+    int m = 7, n = 3;
+    std::cout << ""\nGrid "" << m << ""x"" << n << "":"" << std::endl;
+    std::cout << ""2D DP      : "" << uniquePaths(m, n) << std::endl;
+    std::cout << ""Optimised  : "" << uniquePathsOptimised(m, n) << std::endl;
+    std::cout << ""Math C(n,k): "" << uniquePathsMath(m, n) << std::endl;
+
+    // Obstacles
+    std::cout << ""\n-- Unique Paths with Obstacles --"" << std::endl;
+    std::vector<std::vector<int>> grid = {
+        {0, 0, 0},
+        {0, 1, 0},
+        {0, 0, 0}
+    };
+    std::cout << ""Grid (1=obstacle):"" << std::endl;
+    for (auto& row : grid) {
+        for (int v : row) std::cout << v << "" "";
+        std::cout << std::endl;
+    }
+    std::cout << ""Unique paths: "" << uniquePathsWithObstacles(grid)
+              << "" (expect 2)"" << std::endl;
+
+    return 0;
+}
+",1,0,0.4598452,False

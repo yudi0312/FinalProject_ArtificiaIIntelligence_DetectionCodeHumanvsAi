@@ -1,0 +1,4 @@
+Model,False_Positive,False_Negative,Total_Error
+SVM,4,4,8
+CNN,3,1,4
+GraphCodeBERT,1,0,1
